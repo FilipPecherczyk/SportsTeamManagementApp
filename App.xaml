@@ -1,0 +1,24 @@
+﻿<Application x:Class="SportsTeamManagementApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SportsTeamManagementApp"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Common/DataTemplate.xaml"/>
+                
+                <ResourceDictionary Source="Styles/Button.xaml"/>
+                <ResourceDictionary Source="Styles/WindowButton.xaml"/>
+                <ResourceDictionary Source="Styles/Image.xaml"/>
+                <ResourceDictionary Source="Styles/Text.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
