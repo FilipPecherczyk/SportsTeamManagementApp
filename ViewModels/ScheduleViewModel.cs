@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SportsTeamManagementApp.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class ScheduleViewModel : BaseViewModel
     {
-        private readonly HomeView View;
+        private readonly ScheduleView View;
 
-        public HomeViewModel(HomeView view)
+        public ScheduleViewModel(ScheduleView view)
         {
             View = view;
         }

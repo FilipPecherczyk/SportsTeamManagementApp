@@ -7,8 +7,20 @@
         <view:HomeView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:TeamViewModel}">
+        <view:TeamView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ScheduleViewModel}">
+        <view:ScheduleView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:ScoreboardViewModel}">
         <view:ScoreboardView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+        <view:ProfileView/>
     </DataTemplate>
 
 </ResourceDictionary>

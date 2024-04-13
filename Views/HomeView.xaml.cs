@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsTeamManagementApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace SportsTeamManagementApp.Views
         public HomeView()
         {
             InitializeComponent();
+            var model = new HomeViewModel(this);
+            this.DataContext = model;
         }
     }
 }

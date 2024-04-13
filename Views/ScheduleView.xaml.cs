@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace SportsTeamManagementApp.Views
 {
     /// <summary>
-    /// Interaction logic for ScoreboardView.xaml
+    /// Interaction logic for ScheduleView.xaml
     /// </summary>
-    public partial class ScoreboardView : UserControl
+    public partial class ScheduleView : UserControl
     {
-        public ScoreboardView()
+        public ScheduleView()
         {
             InitializeComponent();
-            var model = new ScoreboardViewModel(this);
+            var model = new ScheduleViewModel(this);
             this.DataContext = model;
         }
     }

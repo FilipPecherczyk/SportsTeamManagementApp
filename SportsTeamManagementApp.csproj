@@ -16,7 +16,10 @@
     <None Remove="Images\increase.png" />
     <None Remove="Images\maximize.png" />
     <None Remove="Images\minimize.png" />
+    <None Remove="Images\schedule.png" />
     <None Remove="Images\scoreboard.png" />
+    <None Remove="Images\team.png" />
+    <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +38,16 @@
     <Resource Include="Images\minimize.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\schedule.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\scoreboard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\team.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\user.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
