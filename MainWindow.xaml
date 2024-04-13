@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:SportsTeamManagementApp.ViewModels"
         mc:Ignorable="d"
         AllowsTransparency="True"
-        WindowState="Maximized"
+        WindowState="Normal"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         WindowStyle="None"
@@ -34,15 +34,16 @@
             <!--Left contener-->
             <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
                 
                 <!--Logo-->
-                <StackPanel Grid.Row="0">
-                    
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,0,0">
+                    <Image Source="\Images\logoIcon.png" Width="90" Height="90" VerticalAlignment="Top"/>
+                    <Image Source="\Images\logoLetters.png" Width="150" Height="150" VerticalAlignment="Top"/>
                 </StackPanel>
 
                 <!--Page buttons-->
@@ -136,7 +137,7 @@
             </StackPanel>
             
             <!--Content view-->
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1" Margin="20,30,20,20">
                 <ContentControl x:Name="Pages"
                                 Content="{Binding CurrentView}"/>
             </Grid>

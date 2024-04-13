@@ -6,7 +6,171 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="Aqua">
-        <TextBlock Text="HomeView" Padding="200"/>
+    <Grid Background="#A8D0E6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <!--Left-->
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10,20,0,0">
+
+            <TextBlock 
+                Text="Jan Kowalski"
+                FontSize="40" FontWeight="Bold"
+                HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <TextBlock 
+                Text="AZS PWSZ Nysa"
+                FontSize="30" FontWeight="DemiBold"
+                HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Border Margin="0,40,0,0" BorderBrush="#374785" BorderThickness="5" CornerRadius="10" Width="280" Height="320">
+                
+            </Border>
+            
+
+
+        </StackPanel>
+
+        <!--Right Column-->
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <!--Next game-->
+            <Border Grid.Row="1" Margin="10" Background="#F8E9A1" BorderBrush="#374785" BorderThickness="5" CornerRadius="10">
+                <StackPanel >
+                    <TextBlock 
+                        Text="Następny mecz"
+                        FontSize="35" FontWeight="DemiBold"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                        <TextBlock 
+                            Text="Przeciwnik:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="Zaksa Kędzierzyn Koźle"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                        <TextBlock 
+                            Text="Gospodarz:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="Zaksa Kędzierzyn Koźle"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                        <TextBlock 
+                            Text="Data:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="21.05.2024, 16:00"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
+            <!--Next training-->
+            <Border Grid.Row="2" Margin="10" Background="#F8E9A1" BorderBrush="#374785" BorderThickness="5" CornerRadius="10">
+                <StackPanel >
+                    <TextBlock 
+                        Text="Następny trening"
+                        FontSize="35" FontWeight="DemiBold"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                        <TextBlock 
+                            Text="Data:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="21.05.2024, 16:00"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                        <TextBlock 
+                            Text="Miejscowość:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="Nysa"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                        <TextBlock 
+                            Text="Adres:"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TextBlock 
+                            Text="Racławska 16"
+                            FontSize="23" FontWeight="DemiBold"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    </StackPanel>
+
+
+                </StackPanel>
+            </Border>
+
+
+        </Grid>
+
+        <!--Footer-->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Button 
+                Content="Wyloguj"
+                FontSize="25" FontWeight="SemiBold"
+                Background="Red" Foreground="White"
+                Width="150" Height="50"
+                HorizontalAlignment="Right" Margin="0,0,20,0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#ff3333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+
     </Grid>
 </UserControl>
