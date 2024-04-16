@@ -5,8 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportsTeamManagementApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="LawnGreen">
-        <TextBlock Text="Kalendarz"/>
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid Background="#A8D0E6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Column="0" Grid.ColumnSpan="2" Stretch="Uniform" Margin="30,70,30,30">
+            <Calendar 
+                CalendarButtonStyle="{DynamicResource CalendarButtonStyle}" 
+                CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle}" 
+                CalendarItemStyle="{DynamicResource CalendarItemStyle}" 
+                Style="{DynamicResource CalendarStyle}"/>
+        </Viewbox>
+        
     </Grid>
 </UserControl>
