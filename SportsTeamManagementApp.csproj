@@ -19,6 +19,7 @@
     <None Remove="Images\MainLogoText.png" />
     <None Remove="Images\maximize.png" />
     <None Remove="Images\minimize.png" />
+    <None Remove="Images\rankingIcon.png" />
     <None Remove="Images\schedule.png" />
     <None Remove="Images\scoreboard.png" />
     <None Remove="Images\smallLogoLetters.png" />
@@ -46,6 +47,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\minimize.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rankingIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\schedule.png">

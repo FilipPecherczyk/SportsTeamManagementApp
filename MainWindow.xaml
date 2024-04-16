@@ -97,10 +97,24 @@
 
                     </RadioButton>
 
+                    <!--RangingsPage-->
+                    <RadioButton Style="{StaticResource BtnStyle}"
+                                 Command="{Binding RankingsCommand}"
+                                 IsChecked="False">
+
+                        <Grid>
+                            <Image Source="\Images\rankingIcon.png" Style="{StaticResource Image_Style}"/>
+                            <TextBlock Text="Rankingi" Style="{StaticResource Text_Style}"/>
+                        </Grid>
+
+                    </RadioButton>
+
                 </StackPanel>
 
                 <!--Profile buttons-->
                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                    
+                    
                     <!--ProfilePage-->
                     <RadioButton Style="{StaticResource BtnStyle}"
                                  Command="{Binding ProfileCommand}"

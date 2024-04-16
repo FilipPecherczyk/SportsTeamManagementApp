@@ -19,6 +19,10 @@
         <view:ScoreboardView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:RankingsViewModel}">
+        <view:RankingsView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
         <view:ProfileView/>
     </DataTemplate>
