@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportsTeamManagementApp.Views"
+             xmlns:controls="clr-namespace:SportsTeamManagementApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
 
@@ -19,11 +20,29 @@
 
         <Viewbox Grid.Column="0" Grid.ColumnSpan="2" Stretch="Uniform" Margin="30,70,30,30">
             <Calendar 
-                CalendarButtonStyle="{DynamicResource CalendarButtonStyle}" 
-                CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle}" 
-                CalendarItemStyle="{DynamicResource CalendarItemStyle}" 
-                Style="{DynamicResource CalendarStyle}"/>
+                CalendarButtonStyle="{StaticResource CalendarButtonStyle}"
+                CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle}"
+                CalendarItemStyle="{StaticResource CalendarItemStyle}"
+                Style="{StaticResource CalendarStyle}"/>
+
+            <!--<Calendar/>-->
         </Viewbox>
+
+        <Border Grid.Column="2" Margin="15,70,40,30" BorderBrush="#374785" BorderThickness="7" CornerRadius="7">
+            <StackPanel Background="#4457a2">
+                <TextBlock Text="16 kwiecień 2024" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,0"/>
+
+                <!--Tutaj listbox dodać-->
+                <ItemsControl ItemsSource="{Binding Events}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:EventControl/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </Border>
         
     </Grid>
 </UserControl>

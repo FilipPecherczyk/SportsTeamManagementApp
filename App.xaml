@@ -11,14 +11,13 @@
 
                 <ResourceDictionary Source="Common/DataTemplate.xaml"/>
                 
+                <ResourceDictionary Source="Styles/CalendarStyles.xaml"/>
+                
+                
                 <ResourceDictionary Source="Styles/Button.xaml"/>
                 <ResourceDictionary Source="Styles/WindowButton.xaml"/>
                 <ResourceDictionary Source="Styles/Image.xaml"/>
                 <ResourceDictionary Source="Styles/Text.xaml"/>
-                <ResourceDictionary Source="Styles/CalendarStyle.xaml"/>
-                <ResourceDictionary Source="Styles/CalendarItemStyle.xaml"/>
-                <ResourceDictionary Source="Styles/CalendarDayButtonStyle.xaml"/>
-                <ResourceDictionary Source="Styles/CalendarButtonStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
             
