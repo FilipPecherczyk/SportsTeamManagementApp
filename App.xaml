@@ -14,6 +14,8 @@
                 <ResourceDictionary Source="Styles/CalendarStyles.xaml"/>
                 
                 
+                <ResourceDictionary Source="Styles/ScrollStyles.xaml"/>
+                <ResourceDictionary Source="Styles/BorderStyles.xaml"/>
                 <ResourceDictionary Source="Styles/Button.xaml"/>
                 <ResourceDictionary Source="Styles/WindowButton.xaml"/>
                 <ResourceDictionary Source="Styles/Image.xaml"/>

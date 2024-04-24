@@ -29,20 +29,25 @@
         </Viewbox>
 
         <Border Grid.Column="2" Margin="15,70,40,30" BorderBrush="#374785" BorderThickness="7" CornerRadius="7">
-            <StackPanel Background="#4457a2">
-                <TextBlock Text="16 kwiecień 2024" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,0"/>
+            <Grid Background="#4457a2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <!--Tutaj listbox dodać-->
-                <ItemsControl ItemsSource="{Binding Events}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:EventControl/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <TextBlock Text="16 kwiecień 2024" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30"/>
 
-            </StackPanel>
+                <ScrollViewer Style="{DynamicResource CustomScrollViewerStyle}" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Events}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <controls:EventControl/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Border>
-        
+
     </Grid>
 </UserControl>
