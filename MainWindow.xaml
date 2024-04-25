@@ -11,7 +11,8 @@
         Background="Transparent"
         WindowStyle="None"
         MouseDown="Window_MouseDown"
-        Title="MainWindow" Height="650" Width="1200">
+        Title="MainWindow" 
+        Height="650" Width="1200">
 
     <Window.DataContext>
         <vm:NavigationViewModel/>
