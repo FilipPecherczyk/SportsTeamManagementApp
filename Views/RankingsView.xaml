@@ -6,7 +6,87 @@
              xmlns:local="clr-namespace:SportsTeamManagementApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Gray">
-        <TextBlock Text="Rankings"/>
+    <Grid Background="#A8D0E6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Left-->
+        <Grid Grid.Column="0" Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1">
+
+                <!--<Label FontSize="20">Zawodnicy:</Label>
+                <ComboBox FontSize="20" ItemsSource="{Binding Players}"/>-->
+
+                <Label FontSize="20" >Ćwiczenie:</Label>
+                <ComboBox FontSize="20" ItemsSource="{Binding Exercise}"/>
+
+                <Label FontSize="20" Margin="0,20,0,0">Ranking na dzień:</Label>
+                <DatePicker FontSize="20" />
+
+
+                <Button Style="{DynamicResource CustomStandardButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Margin="0,30,10,0" 
+                        Content="Generuj"/>
+
+                <Button Style="{DynamicResource CustomStandardButton}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Margin="0,30,10,0" Foreground="OrangeRed"
+                        Content="Wyczyść kryteria"/>
+
+            </StackPanel>
+            
+        </Grid>
+
+
+        <!--Right-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="0,40,0,0" HorizontalAlignment="Center"
+               Text="Ranking"
+               FontSize="40" FontWeight="Bold" />
+
+
+            <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5">
+                <DataGrid Margin="-1"
+                    FontSize="20"
+                    ItemsSource="{Binding HistoryOfExerciseList}" 
+                    AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                    CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False"
+                    CanUserResizeRows="False" IsReadOnly="True" IsHitTestVisible="False">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="20"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Data" Binding="{Binding Date}" Width="*"/>
+                        <DataGridTextColumn Header="Wynik" Binding="{Binding Result}" Width="Auto" MinWidth="80"/>
+                        <DataGridTextColumn Header="Różnica %" Binding="{Binding PercentageDifference}" Width="Auto" MinWidth="105"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+
+
+        </Grid>
+
     </Grid>
 </UserControl>
