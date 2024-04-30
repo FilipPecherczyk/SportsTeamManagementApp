@@ -24,8 +24,6 @@
                 CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle}"
                 CalendarItemStyle="{StaticResource CalendarItemStyle}"
                 Style="{StaticResource CalendarStyle}"/>
-
-            <!--<Calendar/>-->
         </Viewbox>
 
         <Border Grid.Column="2" Margin="15,70,40,30" BorderBrush="#374785" BorderThickness="7" CornerRadius="7">

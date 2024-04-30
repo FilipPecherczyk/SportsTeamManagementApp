@@ -9,13 +9,16 @@
 
   <ItemGroup>
     <None Remove="homeIMG.png" />
+    <None Remove="Images\backImage.jpg" />
     <None Remove="Images\close.png" />
     <None Remove="Images\closeBtn.png" />
     <None Remove="Images\home.png" />
     <None Remove="Images\homeWhite.png" />
     <None Remove="Images\increase.png" />
+    <None Remove="Images\key.png" />
     <None Remove="Images\logoIcon.png" />
     <None Remove="Images\logoLetters.png" />
+    <None Remove="Images\logoText.png" />
     <None Remove="Images\MainLogoText.png" />
     <None Remove="Images\maximize.png" />
     <None Remove="Images\minimize.png" />
@@ -25,6 +28,13 @@
     <None Remove="Images\smallLogoLetters.png" />
     <None Remove="Images\team.png" />
     <None Remove="Images\user.png" />
+    <None Remove="Images\userFullIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\backImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,10 +50,16 @@
     <Resource Include="Images\increase.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\key.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\logoIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\logoLetters.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logoText.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\minimize.png">
@@ -62,6 +78,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\userFullIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -16,5 +16,7 @@ namespace SportsTeamManagementApp.Common
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
+        protected Dictionary<string, RelayCommand> _relayCommands = new Dictionary<string, RelayCommand>();
     }
 }
