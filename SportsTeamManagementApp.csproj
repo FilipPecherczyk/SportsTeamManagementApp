@@ -12,6 +12,7 @@
     <None Remove="Images\backImage.jpg" />
     <None Remove="Images\close.png" />
     <None Remove="Images\closeBtn.png" />
+    <None Remove="Images\closeLoginWindow.png" />
     <None Remove="Images\home.png" />
     <None Remove="Images\homeWhite.png" />
     <None Remove="Images\increase.png" />
@@ -39,6 +40,9 @@
 
   <ItemGroup>
     <Resource Include="Images\closeBtn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\closeLoginWindow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\home.png">

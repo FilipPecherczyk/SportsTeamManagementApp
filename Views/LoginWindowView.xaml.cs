@@ -36,6 +36,10 @@ namespace SportsTeamManagementApp.Views
             }
         }
 
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
     }
 }

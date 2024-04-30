@@ -41,7 +41,7 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="33"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -62,6 +62,31 @@
                        VerticalAlignment="Center"
                        Margin="30 0 0 0"/>
 
+
+                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Grid.Column="1" Grid.ColumnSpan="3" Margin="-10">
+                    <Image Source="\Images\closeLoginWindow.png" Height="27"/>
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
                 <!--Login Panel-->
                 <StackPanel Grid.Row="2"
