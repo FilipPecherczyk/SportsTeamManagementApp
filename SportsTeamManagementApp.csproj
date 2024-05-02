@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="homeIMG.png" />
     <None Remove="Images\backImage.jpg" />
+    <None Remove="Images\barcateam.jpg" />
     <None Remove="Images\close.png" />
     <None Remove="Images\closeBtn.png" />
     <None Remove="Images\closeLoginWindow.png" />
@@ -34,6 +35,9 @@
 
   <ItemGroup>
     <Resource Include="Images\backImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\barcateam.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -28,11 +28,66 @@
             Value="#4457a2"/>
 
         <Setter Property="Background"
-            Value="#F8E9A1"/>
+            Value="#F8C521"/>
 
         <Setter Property="Foreground"
             Value="#4457a2"/>
 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border 
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="#374785"
+            BorderThickness="5"
+            CornerRadius="10"
+            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#576ab4"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="TeamPanelButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Height" Value="70"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="20,0"/>
+        <Setter Property="Padding" Value="20,0"/>
+        <Setter Property="MinWidth" Value="230"/>
+        <Setter Property="Background" Value="#F8C521"/>
+        <Setter Property="Foreground" Value="#374785"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border 
+                    x:Name="border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="#374785"
+                    BorderThickness="5"
+                    CornerRadius="10"
+                    Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#576ab4"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

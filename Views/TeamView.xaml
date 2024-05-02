@@ -7,7 +7,69 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="Orange">
-        <TextBlock Text="Team"/>
+    <Grid Background="#A8D0E6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" MaxHeight="480"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,30">
+            <TextBlock Text="Drużyna" Grid.Column="0" FontSize="36" FontWeight="Bold" Foreground="#374785" TextAlignment="Center" Margin="0,10,0,10"/>
+            <Image  
+            Source="\Images\barcateam.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+
+
+
+
+        <TextBlock Text="Najnowsza" Grid.Column="1" FontSize="30" FontWeight="Bold" Foreground="#374785" TextAlignment="Center" Margin="0,-10,0,0"/>
+        <TextBlock Text="wiadomość" Grid.Column="1" FontSize="30" FontWeight="Bold" Foreground="#374785" TextAlignment="Center" Margin="0,18,0,0"/>
+        <Border Grid.Column="1" Margin="15,60,40,30" BorderBrush="#374785" BorderThickness="7" CornerRadius="7">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Autor: Trener" Grid.Row="0" FontSize="20" FontWeight="Bold" Foreground="Black" TextAlignment="Left" Margin="10,10,0,20" />
+
+                <StackPanel Grid.Row="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="230">
+                        <TextBlock Text="Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów"
+                    FontSize="20" FontWeight="SemiBold" 
+                    Foreground="Black" 
+                    TextWrapping="Wrap"
+                    TextAlignment="Left" Margin="10,40,0,10"/>
+                    </ScrollViewer>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30,30,0,10">
+            <Button 
+                Content="Strona Ligi"
+                Style="{DynamicResource TeamPanelButtonStyle}"/>
+
+            <Button 
+                Content="Fanpage drużyny"
+                Style="{DynamicResource TeamPanelButtonStyle}"/>
+
+            <Button 
+                Content="Tabela"
+                Style="{DynamicResource TeamPanelButtonStyle}"/>
+
+
+
+        </StackPanel>
+
+
+
     </Grid>
 </UserControl>
