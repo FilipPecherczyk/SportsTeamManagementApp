@@ -77,9 +77,9 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Data" Binding="{Binding Date}" Width="*"/>
-                        <DataGridTextColumn Header="Wynik" Binding="{Binding Result}" Width="Auto" MinWidth="80"/>
-                        <DataGridTextColumn Header="Różnica %" Binding="{Binding PercentageDifference}" Width="Auto" MinWidth="105"/>
+                        <DataGridTextColumn Header="Zawodnik" Binding="{Binding Date}" Width="2*"/>
+                        <DataGridTextColumn Header="Wynik" Binding="{Binding Result}" Width="*"/>
+                        <DataGridTextColumn Header="Data" Binding="{Binding PercentageDifference}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
