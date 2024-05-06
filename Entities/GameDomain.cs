@@ -20,5 +20,9 @@ namespace SportsTeamManagementApp.Entities
         public int? TeamScore { get; set; }
 
         public int? OpponentScore { get; set; }
+
+        //
+        public EventDomain Event { get; set; }
+        public int EventId { get; set; }
     }
 }

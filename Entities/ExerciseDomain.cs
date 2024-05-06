@@ -15,5 +15,12 @@ namespace SportsTeamManagementApp.Entities
         public decimal Score { get; set; }
 
         public DateTime Date { get; set; }
+
+        //
+        public CompetitionDomain Competition { get; set; }
+        public int CompetitionId { get; set; }
+
+        public UserDomain User { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -18,5 +18,12 @@ namespace SportsTeamManagementApp.Entities
 
         [Column(TypeName = "varchar(30)")]
         public string Title { get; set; }
+
+        //
+        public TeamDomain Team { get; set; }
+        public int TeamId { get; set; }
+
+        public List<GameDomain> Games { get; set; } = new List<GameDomain>();
+
     }
 }

@@ -16,5 +16,12 @@ namespace SportsTeamManagementApp.Entities
 
         [Column(TypeName = "varchar(40)")]
         public string Name { get; set; }
+
+
+        public ButtonsDomain Buttons { get; set; }
+        public List<AnnouncementDomain> Announcements { get; set; } = new List<AnnouncementDomain>();
+        public List<EventDomain> Events { get; set; } = new List<EventDomain>();
+        public List<CompetitionDomain> Competitions { get; set; } = new List<CompetitionDomain>();
+        public List<UserDomain> Users { get; set; } = new List<UserDomain>();
     }
 }

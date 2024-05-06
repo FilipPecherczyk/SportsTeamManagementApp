@@ -34,5 +34,14 @@ namespace SportsTeamManagementApp.Entities
 
         public DateTime JoinDate { get; set; }
 
+
+
+        //
+        public TeamDomain Team { get; set; }
+        public int TeamId { get; set; }
+
+        public List<ExerciseDomain> Exercises { get; set; } = new List<ExerciseDomain>();
+
+
     }
 }
