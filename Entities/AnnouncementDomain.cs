@@ -8,6 +8,8 @@ namespace SportsTeamManagementApp.Entities
 {
     public class AnnouncementDomain
     {
+        public int Id { get; set; }
+
         public string Text { get; set; }
     }
 }
