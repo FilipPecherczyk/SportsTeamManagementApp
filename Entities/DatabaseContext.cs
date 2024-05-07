@@ -63,7 +63,8 @@ namespace SportsTeamManagementApp.Entities
             modelBuilder.Entity<UserDomain>()
                 .HasMany(u => u.Exercises)
                 .WithOne(e => e.User)
-                .HasForeignKey(e => e.UserId);
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
 
         }
 

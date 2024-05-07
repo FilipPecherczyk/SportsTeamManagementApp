@@ -1,4 +1,5 @@
 ﻿using SportsTeamManagementApp.Common;
+using SportsTeamManagementApp.Entities;
 using SportsTeamManagementApp.Views;
 using System;
 using System.Collections.Generic;
