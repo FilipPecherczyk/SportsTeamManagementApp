@@ -18,6 +18,7 @@ namespace SportsTeamManagementApp.ViewModels
     public class LoginWindowViewModel : BaseViewModel
     {
         private readonly LoginWindowView View;
+        
 
         public LoginWindowViewModel(LoginWindowView view)
         {
@@ -37,6 +38,40 @@ namespace SportsTeamManagementApp.ViewModels
 
 
         #region Collectinos
+
+        #region Buttons
+
+        private string _mainButtonContent;
+        public string MainButtonContent
+        {
+            get { return _mainButtonContent; }
+            set
+            {
+                if (_mainButtonContent != value)
+                {
+                    _mainButtonContent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _supportingButtonContent;
+        public string SupportingButtonContent
+        {
+            get { return _supportingButtonContent; }
+            set
+            {
+                if (_supportingButtonContent != value)
+                {
+                    _supportingButtonContent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        #endregion
+
 
         private ObservableCollection<string> _roles;
         public ObservableCollection<string> Roles
@@ -96,6 +131,36 @@ namespace SportsTeamManagementApp.ViewModels
                     }
                 });
             });
+        }
+
+
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                string commandName = "OdszyfrujCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.OdszyfrujExecute());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void OdszyfrujExecute()
+        {
+            await Task.Run(() =>
+            {
+                Odszyfruj();
+            });
+        }
+
+        private void Odszyfruj()
+        {
+            
         }
 
         #endregion

@@ -34,23 +34,22 @@
 
             <Border.Background>
                 <LinearGradientBrush StartPoint="0 1" EndPoint="1 0">
-                    <GradientStop Color="#A8D0E6" Offset="0"/>
-                    <GradientStop Color="#374785" Offset="0.75"/>
+                    <!--<GradientStop Color="#A8D0E6" Offset="0"/>-->
+                    <GradientStop Color="#374785" Offset="0"/>
+                    <GradientStop Color="#6474b3" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="33"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="38"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
                 </Grid.ColumnDefinitions>
 
                 <!--Top elements-->
@@ -63,7 +62,7 @@
                        Margin="30 0 0 0"/>
 
 
-                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Grid.Column="1" Grid.ColumnSpan="3" Margin="-10">
+                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,0,30,0">
                     <Image Source="\Images\closeLoginWindow.png" Height="27"/>
 
                     <Button.Style>
@@ -88,39 +87,38 @@
                     </Button.Template>
                 </Button>
 
-                <!--Login Panel-->
-                <StackPanel Grid.Row="2"
-                        Width="300"
-                        Orientation="Vertical"
-                        Margin="20 5 0 0">
-
+                <!--Logo-->
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Margin="0,20,0,0">
+                    
                     <Image Source="\Images\logoIcon.png"
-                       Height="90"
-                       Width="90"
-                       />
+                           Height="90"
+                           Width="90"
+                           />
 
                     <Image Source="\Images\logoText.png"
-                       Height="200"
-                       Width="200"
-                       Margin="0,-60,0,0"/>
+                           Height="200"
+                           Width="200"
+                           Margin="0,-60,0,0"/>
 
-                    <!--<TextBlock Text="SportMate"
-                           Foreground="White"
-                           FontSize="35"
-                           FontFamily="Montserrat"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                            Margin="0 0 0 3"/>-->
-
-                    <TextBlock Text="Twoje wsparcie dla drużyny"
+                    <TextBlock 
+                           Text="Twoje wsparcie dla drużyny"
                            Foreground="White"
                            FontSize="20"
                            FontFamily="Montserrat"
                            FontWeight="Medium"
                            HorizontalAlignment="Center"
                            Margin="0 -70 0 0"/>
+                    
+                </StackPanel>
+                
+                
+                <!--Login Panel-->
+                <StackPanel Grid.Row="2"
+                        Width="300"
+                        Orientation="Vertical"
+                        Margin="0 200 0 0">
 
-                    <Grid Margin="0,-20,0,0">
+                    <Grid Margin="0,0,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition/>
@@ -174,39 +172,6 @@
                     </Grid>
 
 
-                    <Grid Margin="0 0 0 20" Visibility="Visible">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-
-                        <ComboBox x:Name="UserCategories_ComboBox"
-                                  Grid.Column="0" FontSize="14"
-                                  ItemsSource="{Binding Roles}">
-
-                        </ComboBox>
-
-                        <TextBox
-                            Grid.Column="1"
-                            x:Name="registerCodeTxt"
-                            FontSize="14"
-                            FontWeight="Medium"
-                            FontFamily="Montserrat"
-                            Foreground="White"
-                            CaretBrush="LightGray"
-                            BorderBrush="DarkGray"
-                            Background="Transparent"
-                            BorderThickness="0 0 0 2"
-                            Height="30"
-                            VerticalContentAlignment="Center"
-                           Margin="10,0,0,0">
-                        </TextBox>
-
-
-                    </Grid>
-
-
                     <!--Log in button-->
                     <Button Content="ZALOGUJ"
                         x:Name="Login_btn"
@@ -241,26 +206,116 @@
                         </Button.Template>
                     </Button>
 
-                    <!--Registry button-->
-                    <Button Content="Zarejestruj się"
-                        x:Name="Register_btn"
-                        Background="Transparent"
-                        Foreground="White"
-                        BorderBrush="Transparent"
-                        FontSize="15"
-                        FontWeight="DemiBold"
-                        FontFamily="Montserrat"
-                        Cursor="Hand"
-                        Width="120"
-                        Margin="140 20 0 20"
-                        >
+
+                </StackPanel>
+
+
+                <!--Registration Panel-->
+                <StackPanel Grid.Row="2" Grid.Column="1"
+                            Width="300"
+                            Orientation="Vertical"
+                            Margin="0 200 0 0">
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="\Images\userFullIcon.png"
+                               Margin="9"/>
+
+                        <TextBox
+                            Grid.Column="1"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Foreground="White"
+                            CaretBrush="LightGray"
+                            BorderBrush="DarkGray"
+                            Background="Transparent"
+                            BorderThickness="0 0 0 2"
+                            Height="30"
+                            VerticalContentAlignment="Center"
+                            Padding="5 0 0 0">
+                        </TextBox>
+                    </Grid>
+
+                    <Grid Margin="0 20 0 30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="\Images\key.png"
+                               Margin="9"/>
+
+                        <PasswordBox
+                            Grid.Column="1"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Foreground="White"
+                            CaretBrush="LightGray"
+                            BorderBrush="DarkGray"
+                            Background="Transparent"
+                            BorderThickness="0 0 0 2"
+                            Height="30"
+                            VerticalContentAlignment="Center"
+                            Padding="5 0 0 0">
+                        </PasswordBox>
+
+                    </Grid>
+
+
+                    <Grid Margin="0 0 0 20" Visibility="Visible">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <ComboBox 
+                            Grid.Column="0" FontSize="14"
+                            ItemsSource="{Binding Roles}">
+
+                        </ComboBox>
+
+                        <TextBox
+                            Grid.Column="1"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Foreground="White"
+                            CaretBrush="LightGray"
+                            BorderBrush="DarkGray"
+                            Background="Transparent"
+                            BorderThickness="0 0 0 2"
+                            Height="30"
+                            VerticalContentAlignment="Center"
+                            Margin="10,0,0,0">
+                        </TextBox>
+
+
+                    </Grid>
+
+
+                    <!--Log in button-->
+                    <Button Content="Zarejestruj"
+                            Foreground="White"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Margin="0,10,0,0"
+                            Command="{Binding LogInCommand}">
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Background" Value="#0080ff"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Background" Value="#66b3ff"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -268,17 +323,67 @@
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border
-                                Background="{TemplateBinding Background}">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
+                                        HorizontalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-
                     </Button>
 
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Create team button-->
+                        <Button Content="Stwórz drużynę"
+                                Grid.Column="1"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="15"
+                                FontWeight="DemiBold"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Width="120"
+                                HorizontalAlignment="Center"
+                                Margin="0 20 0 0"
+                                >
+
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border
+                                         Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+
+                    </Grid>
+
                 </StackPanel>
+
+
+
             </Grid>
 
 
