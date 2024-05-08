@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using SportsTeamManagementApp.Models;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -23,6 +24,8 @@ namespace SportsTeamManagementApp.ViewModels
         public LoginWindowViewModel(LoginWindowView view)
         {
             View = view;
+            LoginData = new AccountInfoModel();
+            RegistrationData = new AccountInfoModel();
             OnLoad();
         }
 
@@ -35,35 +38,31 @@ namespace SportsTeamManagementApp.ViewModels
             };
         }
 
+        #region Properties
 
-
-        #region Collectinos
-
-        #region Buttons
-
-        private string _mainButtonContent;
-        public string MainButtonContent
+        private AccountInfoModel _loginData;
+        public AccountInfoModel LoginData
         {
-            get { return _mainButtonContent; }
+            get { return _loginData; }
             set
             {
-                if (_mainButtonContent != value)
+                if (_loginData != value)
                 {
-                    _mainButtonContent = value;
+                    _loginData = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string _supportingButtonContent;
-        public string SupportingButtonContent
+        private AccountInfoModel _registrationData;
+        public AccountInfoModel RegistrationData
         {
-            get { return _supportingButtonContent; }
+            get { return _registrationData; }
             set
             {
-                if (_supportingButtonContent != value)
+                if (_registrationData != value)
                 {
-                    _supportingButtonContent = value;
+                    _registrationData = value;
                     OnPropertyChanged();
                 }
             }
@@ -72,6 +71,8 @@ namespace SportsTeamManagementApp.ViewModels
 
         #endregion
 
+
+        #region Collectinos
 
         private ObservableCollection<string> _roles;
         public ObservableCollection<string> Roles
@@ -85,7 +86,6 @@ namespace SportsTeamManagementApp.ViewModels
                     OnPropertyChanged();
                 }
             }
-
         }
 
         #endregion
@@ -160,7 +160,7 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void Odszyfruj()
         {
-            
+            var a = LoginData;
         }
 
         #endregion

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SportsTeamManagementApp.Views"
+        xmlns:local="clr-namespace:SportsTeamManagementApp.Views" 
+        xmlns:controls="clr-namespace:SportsTeamManagementApp.Controls"
         mc:Ignorable="d"
         Title="Login" Height="550" Width="800"
         WindowStyle="None"
@@ -140,7 +141,8 @@
                          BorderThickness="0 0 0 2"
                          Height="30"
                          VerticalContentAlignment="Center"
-                         Padding="5 0 0 0">
+                         Padding="5 0 0 0"
+                         Text="{Binding LoginData.Login}" >
                         </TextBox>
                     </Grid>
 
@@ -153,21 +155,19 @@
                         <Image Source="\Images\key.png"
                            Margin="9"/>
 
-                        <PasswordBox
+                        <controls:BindablePasswordBoxControl
                          Grid.Column="1"
                          x:Name="UserPassword_txt"
                          FontSize="14"
                          FontWeight="Medium"
                          FontFamily="Montserrat"
-                         Foreground="White"
-                         CaretBrush="LightGray"
                          BorderBrush="DarkGray"
                          Background="Transparent"
                          BorderThickness="0 0 0 2"
                          Height="30"
                          VerticalContentAlignment="Center"
-                         Padding="5 0 0 0">
-                        </PasswordBox>
+                         Padding="5 0 0 0"
+                         Password="{Binding LoginData.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     </Grid>
 
@@ -237,7 +237,8 @@
                             BorderThickness="0 0 0 2"
                             Height="30"
                             VerticalContentAlignment="Center"
-                            Padding="5 0 0 0">
+                            Padding="5 0 0 0"
+                            Text="{Binding RegistrationData.Login}">
                         </TextBox>
                     </Grid>
 
@@ -250,21 +251,18 @@
                         <Image Source="\Images\key.png"
                                Margin="9"/>
 
-                        <PasswordBox
-                            Grid.Column="1"
-                            FontSize="14"
-                            FontWeight="Medium"
-                            FontFamily="Montserrat"
-                            Foreground="White"
-                            CaretBrush="LightGray"
-                            BorderBrush="DarkGray"
-                            Background="Transparent"
-                            BorderThickness="0 0 0 2"
-                            Height="30"
-                            VerticalContentAlignment="Center"
-                            Padding="5 0 0 0">
-                        </PasswordBox>
-
+                        <controls:BindablePasswordBoxControl
+                               Grid.Column="1"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               BorderBrush="DarkGray"
+                               Background="Transparent"
+                               BorderThickness="0 0 0 2"
+                               Height="30"
+                               VerticalContentAlignment="Center"
+                               Padding="5 0 0 0"
+                               Password="{Binding LoginData.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
 
@@ -308,7 +306,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Margin="0,10,0,0"
-                            Command="{Binding LogInCommand}">
+                            Command="{Binding RegisterCommand}">
 
                         <Button.Style>
                             <Style TargetType="Button">
