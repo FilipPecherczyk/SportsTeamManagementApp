@@ -135,8 +135,8 @@
                          FontWeight="Medium"
                          FontFamily="Montserrat"
                          Foreground="White"
-                         CaretBrush="LightGray"
-                         BorderBrush="DarkGray"
+                         CaretBrush="Transparent"
+                         BorderBrush="{Binding LoginBorderColor}"
                          Background="Transparent"
                          BorderThickness="0 0 0 2"
                          Height="30"
@@ -161,7 +161,7 @@
                          FontSize="14"
                          FontWeight="Medium"
                          FontFamily="Montserrat"
-                         BorderBrush="DarkGray"
+                         BorderBrush="{Binding LoginBorderColor}"
                          Background="Transparent"
                          BorderThickness="0 0 0 2"
                          Height="30"
@@ -171,6 +171,12 @@
 
                     </Grid>
 
+                    <TextBlock Text="Błędny login bądź hasło !!!" 
+                               Foreground="Red" 
+                               FontSize="17" FontWeight="SemiBold" 
+                               Margin="0,0,0,5"
+                               HorizontalAlignment="Center"
+                               Visibility="{Binding WrongLoginTextVisibility}"/>
 
                     <!--Log in button-->
                     <Button Content="ZALOGUJ"
@@ -232,7 +238,7 @@
                             FontFamily="Montserrat"
                             Foreground="White"
                             CaretBrush="LightGray"
-                            BorderBrush="DarkGray"
+                            BorderBrush="{Binding RegistrationBorderColor}"
                             Background="Transparent"
                             BorderThickness="0 0 0 2"
                             Height="30"
@@ -256,13 +262,13 @@
                                FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               BorderBrush="DarkGray"
+                               BorderBrush="{Binding RegistrationBorderColor}"
                                Background="Transparent"
                                BorderThickness="0 0 0 2"
                                Height="30"
                                VerticalContentAlignment="Center"
                                Padding="5 0 0 0"
-                               Password="{Binding LoginData.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                               Password="{Binding RegistrationData.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
 
@@ -275,7 +281,7 @@
 
                         <ComboBox 
                             Grid.Column="0" FontSize="14"
-                            ItemsSource="{Binding Roles}">
+                            ItemsSource="{Binding Roles}" SelectedItem="{Binding RegistrationData.Role}">
 
                         </ComboBox>
 
@@ -291,7 +297,8 @@
                             BorderThickness="0 0 0 2"
                             Height="30"
                             VerticalContentAlignment="Center"
-                            Margin="10,0,0,0">
+                            Margin="10,0,0,0"
+                            Text="{Binding RegistrationData.JoinCode}">
                         </TextBox>
 
 

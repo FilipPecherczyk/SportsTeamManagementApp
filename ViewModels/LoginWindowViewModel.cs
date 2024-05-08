@@ -13,6 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using SportsTeamManagementApp.Models;
+using System.Security.Cryptography;
+using SportsTeamManagementApp.DbAction;
+using System.Windows.Media;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -36,9 +39,13 @@ namespace SportsTeamManagementApp.ViewModels
                 EnumTools.GetDescription(UserCategoriesEnum.Player),
                 EnumTools.GetDescription(UserCategoriesEnum.Coach)
             };
+
+            WrongLoginTextVisibility = Visibility.Collapsed;
+            LoginBorderColor = new SolidColorBrush(Colors.LightGray);
+            RegistrationBorderColor = new SolidColorBrush(Colors.LightGray);
         }
 
-        #region Properties
+        #region Properties 
 
         private AccountInfoModel _loginData;
         public AccountInfoModel LoginData
@@ -63,6 +70,48 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_registrationData != value)
                 {
                     _registrationData = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _wrongLoginTextVisibility;
+        public Visibility WrongLoginTextVisibility
+        {
+            get { return _wrongLoginTextVisibility; }
+            set
+            {
+                if (_wrongLoginTextVisibility != value)
+                {
+                    _wrongLoginTextVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private SolidColorBrush _loginBorderColor;
+        public SolidColorBrush LoginBorderColor
+        {
+            get { return _loginBorderColor; }
+            set
+            {
+                if (_loginBorderColor != value)
+                {
+                    _loginBorderColor = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private SolidColorBrush _registrationBorderColor;
+        public SolidColorBrush RegistrationBorderColor
+        {
+            get { return _registrationBorderColor; }
+            set
+            {
+                if (_registrationBorderColor != value)
+                {
+                    _registrationBorderColor = value;
                     OnPropertyChanged();
                 }
             }
@@ -111,26 +160,29 @@ namespace SportsTeamManagementApp.ViewModels
 
         private async void LogInExecute()
         {
-            await Task.Run(() =>
+            if (LoginData.Login != null && LoginData.Password != null)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                var logedUser = LoginAndRegisterDbAction.GetUserIdIfLoginAndPasswordAreCorrect(LoginData.Login, HashPassword(LoginData.Password));
+                if (logedUser == null)
                 {
-                    MainWindow newWindow = new MainWindow();
-                    newWindow.Show();
-                });
+                    LoginBorderColor = new SolidColorBrush(Colors.Red);
+                    WrongLoginTextVisibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                LoginBorderColor = new SolidColorBrush(Colors.Red);
+                WrongLoginTextVisibility = Visibility.Visible;
+            }
+        }
 
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    foreach (Window window in Application.Current.Windows)
-                    {
-                        if (window.DataContext == this)
-                        {
-                            window.Close();
-                            break;
-                        }
-                    }
-                });
-            });
+        private string HashPassword(string password)
+        {
+            SHA256 hash = SHA256.Create();
+            var passwordBytes = Encoding.Default.GetBytes(password);
+            var hashedpassword = hash.ComputeHash(passwordBytes);
+
+            return Convert.ToHexString(hashedpassword);
         }
 
 
@@ -138,30 +190,38 @@ namespace SportsTeamManagementApp.ViewModels
         {
             get
             {
-                string commandName = "OdszyfrujCommand";
+                string commandName = "RegisterCommand";
                 if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
                 {
                     return command;
                 }
-                command = new RelayCommand(param => this.OdszyfrujExecute());
+                command = new RelayCommand(param => this.RegisterExecute());
                 return _relayCommands[commandName] = command;
             }
 
             set { }
         }
 
-        private async void OdszyfrujExecute()
+        private async void RegisterExecute()
         {
             await Task.Run(() =>
             {
-                Odszyfruj();
+                Register();
             });
         }
 
-        private void Odszyfruj()
+        private void Register()
         {
-            var a = LoginData;
+            var salt = DateTime.Now.ToString();
+            var hashedPW = HashPassword(RegistrationData.Password);
+
+            LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
+
+            // koniec na 24 minucie
+            
         }
+
+
 
         #endregion
 

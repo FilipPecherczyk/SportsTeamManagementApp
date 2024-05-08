@@ -102,8 +102,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DbAction\" />
-  </ItemGroup>
-
 </Project>
