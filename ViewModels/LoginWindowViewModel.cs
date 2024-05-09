@@ -308,9 +308,6 @@ namespace SportsTeamManagementApp.ViewModels
 
 
             RegistrationData = new AccountInfoModel();
-
-            // koniec na 24 minucie
-
         }
 
         private bool IsRegistrationLoginCorrect(string login)
@@ -344,6 +341,34 @@ namespace SportsTeamManagementApp.ViewModels
             return true;
         }
 
+        
+        public ICommand CreateTeamCommand
+        {
+            get
+            {
+                string commandName = "CreateTeamCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.CreateTeamExecute());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void CreateTeamExecute()
+        {
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    CreateTeamWindowView newWindow = new CreateTeamWindowView();
+                    newWindow.Show();
+                });
+            });
+        }
 
         #endregion
 

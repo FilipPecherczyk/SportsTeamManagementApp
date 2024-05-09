@@ -363,7 +363,7 @@
                                 Width="120"
                                 HorizontalAlignment="Center"
                                 Margin="0 20 0 0"
-                                >
+                                Command="{Binding CreateTeamCommand}">
 
                             <Button.Style>
                                 <Style TargetType="Button">

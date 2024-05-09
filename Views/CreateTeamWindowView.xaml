@@ -1,0 +1,225 @@
+﻿<Window x:Class="SportsTeamManagementApp.Views.CreateTeamWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:SportsTeamManagementApp.Controls"
+        xmlns:local="clr-namespace:SportsTeamManagementApp.Views"
+        mc:Ignorable="d"
+        Title="CreateTeamWindowView" Height="400" Width="700"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    
+    <Border CornerRadius="55">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/backImage.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="50"
+                BorderThickness="5"
+                Opacity="0.8">
+
+            <!--BackGround-->
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                    <GradientStop Color="Orange" Offset="0"/>
+                    <GradientStop Color="#F8E9A1" Offset="0.85"/>
+                    <GradientStop Color="Yellow" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0 1" EndPoint="1 0">
+                    <!--<GradientStop Color="#A8D0E6" Offset="0"/>-->
+                    <GradientStop Color="#374785" Offset="0"/>
+                    <GradientStop Color="#6474b3" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!--Close window button-->
+                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,0,30,0">
+                    <Image Source="\Images\closeLoginWindow.png" Height="27"/>
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border
+                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <!--Left panel-->
+                <StackPanel Grid.Column="0" Grid.Row="1"  Margin="0,20,0,0">
+
+                    <Image Source="\Images\logoIcon.png"
+                        Height="90"
+                        Width="90"
+                     />
+
+                    <Image Source="\Images\logoText.png"
+                        Height="200"
+                        Width="200"
+                        Margin="0,-60,0,0"/>
+
+                    <TextBlock 
+                        Text="Stwórz profil drużyny"
+                        Foreground="White"
+                        FontSize="25"
+                        FontFamily="Montserrat"
+                        FontWeight="Medium"
+                        HorizontalAlignment="Center"
+                        Margin="0 -70 0 0"/>
+
+                </StackPanel>
+
+
+                <!--Right panel-->
+                <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,40,30,0">
+                    <TextBox
+                        FontSize="17"
+                        FontWeight="Medium"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="White"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 2"
+                        Height="40"
+                        VerticalContentAlignment="Center"
+                        Padding="5 0 0 0"
+                        Text="{Binding RegistrationData.Login}">
+                    </TextBox>
+
+                    <TextBlock Text="Nazwa drużyny"
+                               FontSize="17"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Foreground="White"
+                               HorizontalAlignment="Center"/>
+
+                    
+                    <Button Content="STWÓRZ"
+                            Foreground="White"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Margin="100,20,0,0"
+                            Command="{Binding SaveTeamCommand}">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#0080ff"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#66b3ff"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBox
+                        FontSize="17"
+                        FontWeight="Medium"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="White"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 2"
+                        Height="40"
+                        VerticalContentAlignment="Center"
+                        Padding="5 0 0 0"
+                        Margin="0,20,0,0"
+                        Text="{Binding RegistrationData.Login}">
+                    </TextBox>
+
+                    <TextBlock Text="Kod rejetracji pierwszego konta"
+                               FontSize="17"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"/>
+
+                    <Button Content="SKOPIUJ KOD"
+                            Foreground="White"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Margin="100,20,0,0"
+                            Command="{Binding CopyJoinCodeCommand}">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#0080ff"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#66b3ff"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Border>
+</Window>
