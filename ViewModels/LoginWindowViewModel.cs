@@ -197,13 +197,45 @@ namespace SportsTeamManagementApp.ViewModels
                 {
                     LoginBorderColor = new SolidColorBrush(Colors.Red);
                     WrongLoginTextVisibility = Visibility.Visible;
+
+                    return;
+                }
+                else
+                {
+                    LoginBorderColor = new SolidColorBrush(Colors.LightGray);
+                    WrongLoginTextVisibility = Visibility.Collapsed;
                 }
             }
             else
             {
                 LoginBorderColor = new SolidColorBrush(Colors.Red);
                 WrongLoginTextVisibility = Visibility.Visible;
+
+                return;
             }
+
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MainWindow newWindow = new MainWindow();
+                    newWindow.Show();
+                });
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window.DataContext == this)
+                        {
+                            window.Close();
+                            break;
+                        }
+                    }
+                });
+            });
+
+
         }
 
         private string HashPassword(string password)
@@ -263,15 +295,19 @@ namespace SportsTeamManagementApp.ViewModels
                 return;
             }
 
+
+
+            var salt = DateTime.Now.ToString();
+            var hashedPW = HashPassword(RegistrationData.Password);
+
+            LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
+
             WrongRegistrationTextVisibility = Visibility.Collapsed;
             WrongRegistrationText = String.Empty;
+
+
+
             RegistrationData = new AccountInfoModel();
-
-
-            //var salt = DateTime.Now.ToString();
-            //var hashedPW = HashPassword(RegistrationData.Password);
-
-            //LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
 
             // koniec na 24 minucie
 
