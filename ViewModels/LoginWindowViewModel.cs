@@ -16,6 +16,7 @@ using SportsTeamManagementApp.Models;
 using System.Security.Cryptography;
 using SportsTeamManagementApp.DbAction;
 using System.Windows.Media;
+using Microsoft.VisualBasic.Logging;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -41,6 +42,7 @@ namespace SportsTeamManagementApp.ViewModels
             };
 
             WrongLoginTextVisibility = Visibility.Collapsed;
+            WrongRegistrationTextVisibility = Visibility.Collapsed;
             LoginBorderColor = new SolidColorBrush(Colors.LightGray);
             RegistrationBorderColor = new SolidColorBrush(Colors.LightGray);
         }
@@ -84,6 +86,34 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_wrongLoginTextVisibility != value)
                 {
                     _wrongLoginTextVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _wrongRegistrationTextVisibility;
+        public Visibility WrongRegistrationTextVisibility
+        {
+            get { return _wrongRegistrationTextVisibility; }
+            set
+            {
+                if (_wrongRegistrationTextVisibility != value)
+                {
+                    _wrongRegistrationTextVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _wrongRegistrationText;
+        public string WrongRegistrationText
+        {
+            get { return _wrongRegistrationText; }
+            set
+            {
+                if (_wrongRegistrationText != value)
+                {
+                    _wrongRegistrationText = value;
                     OnPropertyChanged();
                 }
             }
@@ -212,15 +242,71 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void Register()
         {
-            var salt = DateTime.Now.ToString();
-            var hashedPW = HashPassword(RegistrationData.Password);
+            if (!IsRegistrationLoginCorrect(RegistrationData.Login))
+            {
+                WrongRegistrationTextVisibility = Visibility.Visible;
+                WrongRegistrationText = $"Login nie spełnia wymogów";
+                return;
+            }
 
-            LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
+            if (!IsRegistrationPasswordCorrect(RegistrationData.Password))
+            {
+                WrongRegistrationTextVisibility = Visibility.Visible;
+                WrongRegistrationText = $"Hasło nie spełnia wymogów";
+                return;
+            }
+
+            if (!IsRegistrationRoleOrCodeCorrect(RegistrationData.Role, RegistrationData.JoinCode))
+            {
+                WrongRegistrationTextVisibility = Visibility.Visible;
+                WrongRegistrationText = $"Rola lub kod nie poprawny";
+                return;
+            }
+
+            WrongRegistrationTextVisibility = Visibility.Collapsed;
+            WrongRegistrationText = String.Empty;
+            RegistrationData = new AccountInfoModel();
+
+
+            //var salt = DateTime.Now.ToString();
+            //var hashedPW = HashPassword(RegistrationData.Password);
+
+            //LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
 
             // koniec na 24 minucie
-            
+
         }
 
+        private bool IsRegistrationLoginCorrect(string login)
+        {
+            if (login is null || login.Count() <= 4)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        private bool IsRegistrationPasswordCorrect(string password)
+        {
+            if (password is null || password.Count() <= 6 || password.Count() > 15 || !password.Any(char.IsDigit))
+            {
+                return false;
+            }           
+
+            return true;
+        }
+
+        private bool IsRegistrationRoleOrCodeCorrect(string role, string code)
+        {
+            if (role is null || code is null || code.Count() != 9)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
 
         #endregion
