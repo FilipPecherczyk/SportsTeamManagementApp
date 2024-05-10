@@ -365,7 +365,7 @@ namespace SportsTeamManagementApp.ViewModels
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     CreateTeamWindowView newWindow = new CreateTeamWindowView();
-                    newWindow.Show();
+                    newWindow.ShowDialog();
                 });
             });
         }

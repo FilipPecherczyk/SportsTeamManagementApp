@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
 using SportsTeamManagementApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,7 @@ namespace SportsTeamManagementApp.DbAction
                     Login = login,
                     Password = password,
                     Role = role,
-                    JoinCode = joinCode,
                     Salt = salt,
-                    Birthday = DateTime.Now,
-                    Name = "Jan2",
-                    LastName = "Kowalski2",
                     JoinDate = DateTime.Now,
                     TeamId = 1,
                 });
@@ -53,6 +51,26 @@ namespace SportsTeamManagementApp.DbAction
             return null;
         }
 
+        public static IEnumerable<string> GetTeamsJoinCodes()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Teams.Select(t => t.TeamCode).ToList();
+            }
+        }
+
+        public static void AddTeam(string Name, string joinCode)
+        {
+            using (var db = new DatabaseContext())
+            {
+                var teams = db.Teams.Add(new TeamDomain
+                {
+                    Name = Name,
+                    TeamCode = joinCode
+                });
+                db.SaveChanges();
+            }
+        }
 
     }
 }

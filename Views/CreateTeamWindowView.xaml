@@ -117,7 +117,8 @@
                         Height="40"
                         VerticalContentAlignment="Center"
                         Padding="5 0 0 0"
-                        Text="{Binding RegistrationData.Login}">
+                        Text="{Binding TeamsName}"
+                        IsEnabled="{Binding TeamsNameEnabled}">
                     </TextBox>
 
                     <TextBlock Text="Nazwa drużyny"
@@ -135,7 +136,8 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Margin="100,20,0,0"
-                            Command="{Binding SaveTeamCommand}">
+                            Command="{Binding SaveTeamCommand}"
+                            Visibility="{Binding CreateTeamButtonVisibility}">
 
                         <Button.Style>
                             <Style TargetType="Button">
@@ -173,7 +175,9 @@
                         VerticalContentAlignment="Center"
                         Padding="5 0 0 0"
                         Margin="0,20,0,0"
-                        Text="{Binding RegistrationData.Login}">
+                        IsEnabled="False"
+                        Text="{Binding TeamsCode}"
+                        Visibility="{Binding CreatedTeamIteamsVisibility}">
                     </TextBox>
 
                     <TextBlock Text="Kod rejetracji pierwszego konta"
@@ -182,7 +186,8 @@
                                FontFamily="Montserrat"
                                Foreground="White"
                                HorizontalAlignment="Center"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap"
+                               Visibility="{Binding CreatedTeamIteamsVisibility}"/>
 
                     <Button Content="SKOPIUJ KOD"
                             Foreground="White"
@@ -191,7 +196,8 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Margin="100,20,0,0"
-                            Command="{Binding CopyJoinCodeCommand}">
+                            Command="{Binding CopyJoinCodeCommand}"
+                            Visibility="{Binding CreatedTeamIteamsVisibility}">
 
                         <Button.Style>
                             <Style TargetType="Button">

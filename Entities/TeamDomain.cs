@@ -11,7 +11,7 @@ namespace SportsTeamManagementApp.Entities
     {
         public int Id { get; set; }
 
-        [Column(TypeName = "varchar(4)")]
+        [Column(TypeName = "varchar(9)")]
         public string TeamCode { get; set; }
 
         [Column(TypeName = "varchar(40)")]

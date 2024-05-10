@@ -22,15 +22,12 @@ namespace SportsTeamManagementApp.Entities
         public string Role { get; set; }
 
         [Column(TypeName = "varchar(30)")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Column(TypeName = "varchar(30)")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
-        public DateTime Birthday { get; set; }
-
-        [Column(TypeName = "varchar(9)")]
-        public string JoinCode { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public DateTime JoinDate { get; set; }
 
