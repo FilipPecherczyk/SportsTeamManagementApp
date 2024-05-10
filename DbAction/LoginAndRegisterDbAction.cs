@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualBasic.Logging;
 using SportsTeamManagementApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SportsTeamManagementApp.DbAction
 {
     public static class LoginAndRegisterDbAction
     {
-        public static void AddUser(string login, string password, string role, string joinCode, string salt)
+        public static void AddUser(string login, string password, string salt, string role, int teamId)
         {
             using (var db = new DatabaseContext())
             {
@@ -23,7 +24,7 @@ namespace SportsTeamManagementApp.DbAction
                     Role = role,
                     Salt = salt,
                     JoinDate = DateTime.Now,
-                    TeamId = 1,
+                    TeamId = teamId,
                 });
                 db.SaveChanges();
             }
@@ -69,6 +70,15 @@ namespace SportsTeamManagementApp.DbAction
                     TeamCode = joinCode
                 });
                 db.SaveChanges();
+            }
+        }
+
+        public static TeamDomain GetTeamByJoinCode(string joinCode)
+        {
+            using (var db = new DatabaseContext())
+            {
+                var team = db.Teams.FirstOrDefault(t => t.TeamCode == joinCode);
+                return team;
             }
         }
 

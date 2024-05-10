@@ -44,5 +44,11 @@ namespace SportsTeamManagementApp.Views
                 window.Close();
             }
         }
+
+        private void CopyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var txtToCopy = teamJoinCodeTxt.Text;
+            Clipboard.SetText(txtToCopy);
+        }
     }
 }

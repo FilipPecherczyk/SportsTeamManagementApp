@@ -163,6 +163,7 @@
                     </Button>
 
                     <TextBox
+                        x:Name="teamJoinCodeTxt"
                         FontSize="17"
                         FontWeight="Medium"
                         FontFamily="Montserrat"
@@ -197,7 +198,8 @@
                             Cursor="Hand"
                             Margin="100,20,0,0"
                             Command="{Binding CopyJoinCodeCommand}"
-                            Visibility="{Binding CreatedTeamIteamsVisibility}">
+                            Visibility="{Binding CreatedTeamIteamsVisibility}"
+                            Click="CopyBtn_Click">
 
                         <Button.Style>
                             <Style TargetType="Button">

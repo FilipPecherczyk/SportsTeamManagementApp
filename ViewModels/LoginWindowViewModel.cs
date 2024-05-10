@@ -295,17 +295,17 @@ namespace SportsTeamManagementApp.ViewModels
                 return;
             }
 
+           
 
 
             var salt = DateTime.Now.ToString();
             var hashedPW = HashPassword(RegistrationData.Password);
+            var teamId = LoginAndRegisterDbAction.GetTeamByJoinCode(RegistrationData.JoinCode).Id;
 
-            LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", RegistrationData.Role, RegistrationData.JoinCode, salt);
+            LoginAndRegisterDbAction.AddUser(RegistrationData.Login, $"{hashedPW}{salt}", salt, RegistrationData.Role, teamId);
 
             WrongRegistrationTextVisibility = Visibility.Collapsed;
             WrongRegistrationText = String.Empty;
-
-
 
             RegistrationData = new AccountInfoModel();
         }
@@ -333,7 +333,7 @@ namespace SportsTeamManagementApp.ViewModels
 
         private bool IsRegistrationRoleOrCodeCorrect(string role, string code)
         {
-            if (role is null || code is null || code.Count() != 9)
+            if (role is null || code is null || code.Count() != 9 || LoginAndRegisterDbAction.GetTeamByJoinCode(code) is null)
             {
                 return false;
             }
