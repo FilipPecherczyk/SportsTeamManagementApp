@@ -9,7 +9,7 @@
 
     <Grid Background="#A8D0E6">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" MaxHeight="480"/>
+            <RowDefinition Height="3*"  MaxHeight="480"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -18,13 +18,40 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,30">
-            <TextBlock Text="Drużyna" Grid.Column="0" FontSize="36" FontWeight="Bold" Foreground="#374785" TextAlignment="Center" Margin="0,10,0,10"/>
-            <Image  
-            Source="\Images\barcateam.jpg" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
+        <TextBlock Text="Drużyna" 
+                   Grid.Row="0" 
+                   Grid.Column="0" 
+                   FontSize="36" 
+                   FontWeight="Bold" 
+                   Foreground="#374785"
+                   TextAlignment="Center" 
+                   Margin="0,10,0,10"/>
 
+        <Border Grid.Row="0" Margin="20,60,20,30" BorderThickness="8" BorderBrush="#374785" CornerRadius="5">
+            <DataGrid Margin="-1"
+            FontSize="20"
+            ItemsSource="{Binding Exercises}" 
+            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+            CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False"
+            CanUserResizeRows="False" IsReadOnly="True" SelectionMode="Single">
 
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Imię i nazwisko" Binding="{Binding Name}" Width="2*"/>
+                    <DataGridTextColumn Header="Rola" Binding="{Binding Name}" Width="*"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
 
 
         <TextBlock Text="Najnowsza" Grid.Column="1" FontSize="30" FontWeight="Bold" Foreground="#374785" TextAlignment="Center" Margin="0,-10,0,0"/>

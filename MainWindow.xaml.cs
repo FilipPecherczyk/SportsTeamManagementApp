@@ -30,17 +30,17 @@ namespace SportsTeamManagementApp
             Application.Current.Shutdown();
         }
 
-        private void ResizeWindowBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Normal)
-            {
-                WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                WindowState = WindowState.Normal;
-            }
-        }
+        //private void ResizeWindowBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (WindowState == WindowState.Normal)
+        //    {
+        //        WindowState = WindowState.Maximized;
+        //    }
+        //    else
+        //    {
+        //        WindowState = WindowState.Normal;
+        //    }
+        //}
 
         private void MinimizeWindowBtn_Click(object sender, RoutedEventArgs e)
         {

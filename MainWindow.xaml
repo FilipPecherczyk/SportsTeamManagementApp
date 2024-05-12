@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         AllowsTransparency="True"
         WindowState="Normal"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         WindowStyle="None"
@@ -17,146 +18,150 @@
     <Window.DataContext>
         <vm:NavigationViewModel/>
     </Window.DataContext>
-    
-    <Grid>
 
-        <Border Background="#A8D0E6"/>
-
+    <Border BorderBrush="#374785" BorderThickness="7" CornerRadius="7">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
-            <!--Left contener-->
-            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+            <Border Background="#A8D0E6"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                
-                <!--Logo-->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,0,0">
-                    <Image Source="\Images\logoIcon.png" Width="90" Height="90" VerticalAlignment="Top"/>
-                    <Image Source="\Images\logoLetters.png" Width="150" Height="150" VerticalAlignment="Top"/>
+                <!--Left contener-->
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <!--Logo-->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,0,0">
+                        <Image Source="\Images\logoIcon.png" Width="90" Height="90" VerticalAlignment="Top"/>
+                        <Image Source="\Images\logoLetters.png" Width="150" Height="150" VerticalAlignment="Top"/>
+                    </StackPanel>
+
+                    <!--Page buttons-->
+                    <StackPanel Grid.Row="1">
+
+                        <!--HomePage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding HomeCommand}"
+                             IsChecked="True">
+
+                            <Grid>
+                                <Image Source="\Images\homeWhite.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Strona główna" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+
+                        <!--TeamPage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding TeamCommand}"
+                             IsChecked="False">
+
+                            <Grid>
+                                <Image Source="\Images\team.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Drużyna" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+
+                        <!--SchedulePage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding ScheduleCommand}"
+                             IsChecked="False">
+
+                            <Grid>
+                                <Image Source="\Images\schedule.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Terminarz" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+
+                        <!--ScoreboardPage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding ScoreboardCommand}"
+                             IsChecked="False">
+
+                            <Grid>
+                                <Image Source="\Images\scoreboard.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Wyniki zawodnika" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+
+                        <!--RangingsPage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding RankingsCommand}"
+                             IsChecked="False">
+
+                            <Grid>
+                                <Image Source="\Images\rankingIcon.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Rankingi" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+
+                    </StackPanel>
+
+                    <!--Profile buttons-->
+                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,20">
+
+
+                        <!--ProfilePage-->
+                        <RadioButton Style="{StaticResource BtnStyle}"
+                             Command="{Binding ProfileCommand}"
+                             IsChecked="False">
+
+                            <Grid>
+                                <Image Source="\Images\user.png" Style="{StaticResource Image_Style}"/>
+                                <TextBlock Text="Profil" Style="{StaticResource Text_Style}"/>
+                            </Grid>
+
+                        </RadioButton>
+                    </StackPanel>
+
+
+                </Grid>
+
+                <!--Top panel-->
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+
+                    <Button x:Name="MinimizeWindowBtn" Style="{StaticResource WindowBtnStyle}" Click="MinimizeWindowBtn_Click">
+                        <Image Source="Images/minimize.png"/>
+                    </Button>
+
+                    <!--<Button x:Name="ResizeWindowBtn" Style="{StaticResource WindowBtnStyle}" Click="ResizeWindowBtn_Click">
+                        <Image Source="Images/increase.png" Height="27"/>
+                    </Button>-->
+
+                    <Button x:Name="CloseBtn" Style="{StaticResource WindowBtnStyle}" Click="CloseBtn_Click">
+                        <Image Source="Images/closeBtn.png" Height="27"/>
+                    </Button>
+
                 </StackPanel>
 
-                <!--Page buttons-->
-                <StackPanel Grid.Row="1">
-
-                    <!--HomePage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding HomeCommand}"
-                                 IsChecked="True">
-
-                        <Grid>
-                            <Image Source="\Images\homeWhite.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Strona główna" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-
-                    <!--TeamPage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding TeamCommand}"
-                                 IsChecked="False">
-
-                        <Grid>
-                            <Image Source="\Images\team.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Drużyna" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-
-                    <!--SchedulePage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding ScheduleCommand}"
-                                 IsChecked="False">
-
-                        <Grid>
-                            <Image Source="\Images\schedule.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Terminarz" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-
-                    <!--ScoreboardPage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding ScoreboardCommand}"
-                                 IsChecked="False">
-
-                        <Grid>
-                            <Image Source="\Images\scoreboard.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Wyniki zawodnika" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-
-                    <!--RangingsPage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding RankingsCommand}"
-                                 IsChecked="False">
-
-                        <Grid>
-                            <Image Source="\Images\rankingIcon.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Rankingi" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-
-                </StackPanel>
-
-                <!--Profile buttons-->
-                <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,20">
-                    
-                    
-                    <!--ProfilePage-->
-                    <RadioButton Style="{StaticResource BtnStyle}"
-                                 Command="{Binding ProfileCommand}"
-                                 IsChecked="False">
-
-                        <Grid>
-                            <Image Source="\Images\user.png" Style="{StaticResource Image_Style}"/>
-                            <TextBlock Text="Profil" Style="{StaticResource Text_Style}"/>
-                        </Grid>
-
-                    </RadioButton>
-                </StackPanel>
-
+                <!--Content view-->
+                <Grid Grid.Row="1" Grid.Column="1" Margin="20,30,20,20">
+                    <ContentControl x:Name="Pages"
+                            Content="{Binding CurrentView}"/>
+                </Grid>
 
             </Grid>
-
-            <!--Top panel-->
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-
-
-
-                <Button x:Name="MinimizeWindowBtn" Style="{StaticResource WindowBtnStyle}" Click="MinimizeWindowBtn_Click">
-                    <Image Source="Images/minimize.png"/>
-                </Button>
-
-                <Button x:Name="ResizeWindowBtn" Style="{StaticResource WindowBtnStyle}" Click="ResizeWindowBtn_Click">
-                    <Image Source="Images/increase.png" Height="27"/>
-                </Button>
-
-                <Button x:Name="CloseBtn" Style="{StaticResource WindowBtnStyle}" Click="CloseBtn_Click">
-                    <Image Source="Images/closeBtn.png" Height="27"/>
-                </Button>
-
-            </StackPanel>
-            
-            <!--Content view-->
-            <Grid Grid.Row="1" Grid.Column="1" Margin="20,30,20,20">
-                <ContentControl x:Name="Pages"
-                                Content="{Binding CurrentView}"/>
-            </Grid>
-            
         </Grid>
-    </Grid>
+    </Border>
+    
+    
 </Window>
