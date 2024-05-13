@@ -2,6 +2,7 @@
 using SportsTeamManagementApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace SportsTeamManagementApp.Mappings
 {
     public static class Mapping
     {
+        #region User
+
         public static UserDomain UserModelToDomainMap(UserModel userModel)
         {
             var userDomain = new UserDomain();
@@ -47,5 +50,37 @@ namespace SportsTeamManagementApp.Mappings
 
             return userModel;
         }
+
+        #endregion
+
+        #region Team
+
+        public static ObservableCollection<UserModel> TeamUsersListToObservableCollectionMap(IList<UserDomain> users)
+        {
+            var finalList = new ObservableCollection<UserModel>();
+
+            if (users != null)
+            {
+                foreach (var user in users)
+                {
+                    finalList.Add(new UserModel()
+                    {
+                        Id = user.Id,
+                        Login = user.Login,
+                        Password = user.Password,
+                        Salt = user.Salt,
+                        Role = user.Role,
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        Birthday = user.Birthday,
+                        JoinDate = user.JoinDate,
+                    });
+                }
+            }
+
+            return finalList;
+        }
+
+        #endregion
     }
 }
