@@ -27,5 +27,11 @@ namespace SportsTeamManagementApp.Views
             var model = new ProfileViewModel(this);
             this.DataContext = model;
         }
+
+        private void CopyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var txtToCopy = teamJoinCodeTxt.Text;
+            Clipboard.SetText(txtToCopy);
+        }
     }
 }

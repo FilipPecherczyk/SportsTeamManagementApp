@@ -24,55 +24,59 @@
         <!--1st Row-->
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" MaxWidth="350">
             <Label FontSize="20" FontWeight="DemiBold" Content="Imię:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
+            <TextBox FontSize="20" Padding="5" Text="{Binding User.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditUserEnabled}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" MaxWidth="350">
             <Label FontSize="20" FontWeight="DemiBold" Content="Nazwisko:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
+            <TextBox FontSize="20" Padding="5" Text="{Binding User.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditUserEnabled}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="10" MaxWidth="350">
             <Label FontSize="20" FontWeight="DemiBold" Content="Data urodzenia:" HorizontalAlignment="Left"/>
-            <DatePicker FontSize="23"/>
+            <DatePicker FontSize="23" SelectedDate="{Binding User.Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditUserEnabled}"/>
         </StackPanel>
 
         <!--2nd Row-->
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="10" MaxWidth="350">
-            <Label FontSize="20" FontWeight="DemiBold" Content="Login:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
+            <Label FontSize="20" FontWeight="DemiBold" Content="Drużyna:" HorizontalAlignment="Left"/>
+            <TextBox FontSize="20" Padding="5" IsEnabled="False" Text="{Binding Team.Name}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="10" MaxWidth="350">
-            <Label FontSize="20" FontWeight="DemiBold" Content="Hasło:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
+            <Label FontSize="20" FontWeight="DemiBold" Content="Klucz dostępu:" HorizontalAlignment="Left"/>
+            <TextBox x:Name="teamJoinCodeTxt" FontSize="20" Padding="5" IsEnabled="False" Text="{Binding Team.TeamCode}"/>
         </StackPanel>
+
+        <Button Grid.Row="2" Grid.Column="2" Margin="0,40,80,0" MaxHeight="50" MinWidth="150" MaxWidth="180" FontSize="18" 
+                Content="Skopiuj kod"
+                Style="{DynamicResource TeamPanelButtonStyle}"
+                Click="CopyBtn_Click"/>
 
         <!--3rd Row-->
         <StackPanel Grid.Row="3" Grid.Column="0" Margin="10" MaxWidth="350">
-            <Label FontSize="20" FontWeight="DemiBold" Content="Drużyna:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
+            <Label FontSize="20" FontWeight="DemiBold" Content="Rola:" HorizontalAlignment="Left"/>
+            <TextBox FontSize="20" Padding="5" Text="{Binding User.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="10" MaxWidth="350">
-            <Label FontSize="20" FontWeight="DemiBold" Content="Klucz dostępu:" HorizontalAlignment="Left"/>
-            <TextBox FontSize="20" Padding="5"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="3" Grid.Column="2" Margin="10" MaxWidth="350">
             <Label FontSize="20" FontWeight="DemiBold" Content="Data dołącznia:" HorizontalAlignment="Left"/>
-            <DatePicker FontSize="23"/>
+            <DatePicker FontSize="23" SelectedDate="{Binding User.JoinDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
         </StackPanel>
 
-        <!--4th Row-->
-        <StackPanel Grid.Row="4" Grid.Column="2" Margin="10" MaxWidth="350">
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+
+
+        <!--Edit-->
+        <StackPanel Grid.Row="4" Grid.Column="0" Margin="10" MaxWidth="350">
+            <Grid>
                 <Button 
-                    Content="Usuń profil"
+                    Content="Edytuj"
                     FontSize="25" FontWeight="SemiBold"
-                    Background="Red" Foreground="White"
+                    Background="Orange" Foreground="White"
                     Width="230" Height="50"
-                    HorizontalAlignment="Right" Margin="0,40,20,0">
+                    HorizontalAlignment="Right" Margin="0,40,20,0"
+                    Command="{Binding EditUserCommand}"
+                    Visibility="{Binding EditDeleteButtonVisibility}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border 
@@ -81,6 +85,102 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#e0b246"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <!--Save changes-->
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="10" MaxWidth="350">
+            <Grid>
+                <Button 
+                        Content="Zapisz zmiany"
+                        FontSize="25" FontWeight="SemiBold"
+                        Background="Green" Foreground="White"
+                        Width="230" Height="50"
+                        HorizontalAlignment="Right" Margin="0,40,20,0"
+                        Command="{Binding SaveUserCommand}"
+                        Visibility="{Binding SaveCancelButtonVisibility}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                        x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#439909"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <!--Delete-->
+        <StackPanel Grid.Row="4" Grid.Column="2" Margin="10" MaxWidth="350">
+            <Grid>
+                <Button 
+                    Content="Usuń profil"
+                    FontSize="25" FontWeight="SemiBold"
+                    Background="Red" Foreground="White"
+                    Width="230" Height="50"
+                    HorizontalAlignment="Right" Margin="0,40,20,0"
+                    Command="{Binding DeleteUserCommand}"
+                    Visibility="{Binding EditDeleteButtonVisibility}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#ff3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <!--Delete-->
+        <StackPanel Grid.Row="4" Grid.Column="2" Margin="10" MaxWidth="350">
+            <Grid>
+                <Button 
+                    Content="Anuluj"
+                    FontSize="25" FontWeight="SemiBold"
+                    Background="Red" Foreground="White"
+                    Width="230" Height="50"
+                    HorizontalAlignment="Right" Margin="0,40,20,0"
+                    Command="{Binding CancelUserEditCommand}"
+                    Visibility="{Binding SaveCancelButtonVisibility}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                        x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>

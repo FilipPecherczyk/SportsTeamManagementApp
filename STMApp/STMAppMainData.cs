@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsTeamManagementApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace SportsTeamManagementApp.STMApp
 {
     public static class STMAppMainData
     {
-        //public static string LogedUser { get; set; }
+        public static int LogedUserId { get; set; }
+        public static TeamDomain LogedUserTeam { get; set; }
     }
 }

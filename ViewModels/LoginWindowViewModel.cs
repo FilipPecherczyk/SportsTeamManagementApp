@@ -17,6 +17,7 @@ using System.Security.Cryptography;
 using SportsTeamManagementApp.DbAction;
 using System.Windows.Media;
 using Microsoft.VisualBasic.Logging;
+using SportsTeamManagementApp.STMApp;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -204,6 +205,8 @@ namespace SportsTeamManagementApp.ViewModels
                 {
                     LoginBorderColor = new SolidColorBrush(Colors.LightGray);
                     WrongLoginTextVisibility = Visibility.Collapsed;
+                    STMAppMainData.LogedUserId = logedUser.Id;
+                    STMAppMainData.LogedUserTeam = TeamDbAction.GetTeamById(logedUser.TeamId);
                 }
             }
             else
