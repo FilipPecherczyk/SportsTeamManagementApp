@@ -27,10 +27,13 @@ namespace SportsTeamManagementApp.ViewModels
         public void OnLoad()
         {
             GridDataSheet = new TeamGridPagerModel();
-            var teamUsers = TeamDbAction.GetTeamUsersByTeamId(STMAppMainData.LogedUserTeam.Id);
+            var teamUsers = TeamDbAction.GetTeamUsersByTeamId(STMAppMainData.LogedUserTeam.Id).OrderBy(t => t.Role).ThenBy(t=> t.Name).ThenBy(t => t.LastName).ToList();
             GridDataSheet.List = Mapping.TeamUsersListToObservableCollectionMap(teamUsers);
-
+            var annoucement = AnnouncementDbAction.GetLatestAnnoucementByTeamId(STMAppMainData.LogedUserTeam.Id);
+            if (annoucement != null) Annoucement = annoucement.Text;
         }
+
+        #region Properties
 
         private TeamGridPagerModel _gridDataSheet;
         public TeamGridPagerModel GridDataSheet
@@ -46,6 +49,20 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
+        private string _Annoucement;
+        public string Annoucement
+        {
+            get { return _Annoucement; }
+            set
+            {
+                if (_Annoucement != value)
+                {
+                    _Annoucement = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
+        #endregion
     }
 }

@@ -69,7 +69,7 @@
 
                 <StackPanel Grid.Row="1">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="230">
-                        <TextBlock Text="Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Cześć, chłopaki następny mecz odbędzie się w najbliższą sobotę o 14:00 u nas na hali. Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów.Zbiórka godzinę wcześniej w szatni, proszę zabrać ze sobą domowy komplet strojów"
+                        <TextBlock Text="{Binding Annoucement}"
                     FontSize="20" FontWeight="SemiBold" 
                     Foreground="Black" 
                     TextWrapping="Wrap"
