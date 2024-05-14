@@ -100,7 +100,7 @@
             </Grid>
         </Border>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30,30,0,10">
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30,10,0,10">
             <Button 
                 Content="Strona Ligi"
                 Style="{DynamicResource TeamPanelButtonStyle}"/>
@@ -112,12 +112,15 @@
             <Button 
                 Content="Tabela"
                 Style="{DynamicResource TeamPanelButtonStyle}"/>
-
-
-
         </StackPanel>
 
-
+        <Button Grid.Row="1" Grid.Column="1" Margin="370,80,10,-10" 
+                Width="60" Height="60"  
+                Background="Transparent" BorderBrush="Transparent" 
+                ToolTip="Edytuj przyciski drużynowe"
+                Command="{Binding EditTeamButtonsCommand}" Visibility="{Binding EditTeamButtonsVisibility}">
+            <Image Source="\Images\add_Icon.png" Height="37"/>
+        </Button>
 
     </Grid>
 </UserControl>

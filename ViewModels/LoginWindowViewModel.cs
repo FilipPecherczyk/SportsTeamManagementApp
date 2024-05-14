@@ -207,6 +207,7 @@ namespace SportsTeamManagementApp.ViewModels
                     WrongLoginTextVisibility = Visibility.Collapsed;
                     STMAppMainData.LogedUserId = logedUser.Id;
                     STMAppMainData.LogedUserTeam = TeamDbAction.GetTeamById(logedUser.TeamId);
+                    STMAppMainData.LogedUserPermissionRole = UserDbAction.GetUserById(logedUser.Id).Role;
                 }
             }
             else
