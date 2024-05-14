@@ -1,5 +1,8 @@
 ﻿using SportsTeamManagementApp.Common;
+using SportsTeamManagementApp.Enums;
+using SportsTeamManagementApp.Extensions;
 using SportsTeamManagementApp.Models;
+using SportsTeamManagementApp.STMApp;
 using SportsTeamManagementApp.Views;
 using System;
 using System.Collections.Generic;
@@ -7,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -35,6 +39,35 @@ namespace SportsTeamManagementApp.ViewModels
                 new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" },
                 new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" }
             };
+
+            SetVisibilityAndEnabled();
         }
+
+        private void SetVisibilityAndEnabled()
+        {
+            if (STMAppMainData.LogedUserPermissionRole == EnumTools.GetDescription(UserCategoriesEnum.Coach))
+            {
+                CreateNewEventVisibility = Visibility.Visible;
+            }
+            else
+            {
+                CreateNewEventVisibility = Visibility.Hidden;
+            }
+        }
+
+        private Visibility _createNewEventVisibility;
+        public Visibility CreateNewEventVisibility
+        {
+            get { return _createNewEventVisibility; }
+            set
+            {
+                if (_createNewEventVisibility != value)
+                {
+                    _createNewEventVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
     }
 }
