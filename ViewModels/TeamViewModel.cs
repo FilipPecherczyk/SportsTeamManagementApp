@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace SportsTeamManagementApp.ViewModels
 {
@@ -31,6 +33,15 @@ namespace SportsTeamManagementApp.ViewModels
             GridDataSheet.List = Mapping.TeamUsersListToObservableCollectionMap(teamUsers);
             var annoucement = AnnouncementDbAction.GetLatestAnnoucementByTeamId(STMAppMainData.LogedUserTeam.Id);
             if (annoucement != null) Annoucement = annoucement.Text;
+
+            SetVisibilityAndEnabled();
+        }
+
+        private void SetVisibilityAndEnabled()
+        {
+            IsAnnoucementEnabled = false;
+            NewAnnoucementVisiblity = Visibility.Visible;
+            SaveCancelAnnoucementVisiblity = Visibility.Hidden;
         }
 
         #region Properties
@@ -61,6 +72,153 @@ namespace SportsTeamManagementApp.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+
+        private bool _isAnnoucementEnabled;
+        public bool IsAnnoucementEnabled
+        {
+            get { return _isAnnoucementEnabled; }
+            set
+            {
+                if (_isAnnoucementEnabled != value)
+                {
+                    _isAnnoucementEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _newAnnoucementVisiblity;
+        public Visibility NewAnnoucementVisiblity
+        {
+            get { return _newAnnoucementVisiblity; }
+            set
+            {
+                if (_newAnnoucementVisiblity != value)
+                {
+                    _newAnnoucementVisiblity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _saveCancelAnnoucementVisiblity;
+        public Visibility SaveCancelAnnoucementVisiblity
+        {
+            get { return _saveCancelAnnoucementVisiblity; }
+            set
+            {
+                if (_saveCancelAnnoucementVisiblity != value)
+                {
+                    _saveCancelAnnoucementVisiblity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Operations
+
+        //New Annoucement
+        public ICommand NewAnnoucementCommand
+        {
+            get
+            {
+                string commandName = "NewAnnoucementCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.NewAnnoucementExecute());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void NewAnnoucementExecute()
+        {
+            await Task.Run(() =>
+            {
+                NewAnnoucement();
+            });
+        }
+
+        private void NewAnnoucement()
+        {
+            IsAnnoucementEnabled = true;
+            NewAnnoucementVisiblity = Visibility.Hidden;
+            SaveCancelAnnoucementVisiblity = Visibility.Visible;
+        }
+
+        //Save Annoucement
+        public ICommand SaveAnnoucementCommand
+        {
+            get
+            {
+                string commandName = "SaveAnnoucementCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.SaveAnnoucementExecute());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void SaveAnnoucementExecute()
+        {
+            await Task.Run(() =>
+            {
+                SaveAnnoucement();
+            });
+        }
+
+        private void SaveAnnoucement()
+        {
+            IsAnnoucementEnabled = false;
+            NewAnnoucementVisiblity = Visibility.Visible;
+            SaveCancelAnnoucementVisiblity = Visibility.Hidden;
+
+            AnnouncementDbAction.AddAnnoucement(Annoucement, STMAppMainData.LogedUserTeam.Id);
+        }
+
+        //Cancel Annoucement
+        public ICommand CancelAnnoucementCommand
+        {
+            get
+            {
+                string commandName = "CancelAnnoucementCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.CancelAnnoucementExecute());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void CancelAnnoucementExecute()
+        {
+            await Task.Run(() =>
+            {
+                CancelAnnoucement();
+            });
+        }
+
+        private void CancelAnnoucement()
+        {
+            IsAnnoucementEnabled = false;
+            NewAnnoucementVisiblity = Visibility.Visible;
+            SaveCancelAnnoucementVisiblity = Visibility.Hidden;
+
+            var annoucement = AnnouncementDbAction.GetLatestAnnoucementByTeamId(STMAppMainData.LogedUserTeam.Id);
+            if (annoucement != null) Annoucement = annoucement.Text;
         }
 
         #endregion

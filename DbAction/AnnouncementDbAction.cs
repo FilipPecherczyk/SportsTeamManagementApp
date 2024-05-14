@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D.Converters;
 
 namespace SportsTeamManagementApp.DbAction
 {
@@ -14,6 +15,20 @@ namespace SportsTeamManagementApp.DbAction
             using (var db = new DatabaseContext())
             {
                 return db.Announcements.Where(a => a.TeamId == id).OrderByDescending(a => a.Id).FirstOrDefault();
+            }
+        }
+
+        public static void AddAnnoucement(string text, int teamId)
+        {
+            using (var db = new DatabaseContext())
+            {
+                db.Announcements.Add(new AnnouncementDomain()
+                {
+                    Text = text,
+                    TeamId = teamId,
+                });
+
+                db.SaveChanges();                
             }
         }
     }

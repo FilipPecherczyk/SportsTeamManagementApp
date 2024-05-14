@@ -64,7 +64,7 @@ namespace SportsTeamManagementApp.DbAction
         {
             using (var db = new DatabaseContext())
             {
-                var teams = db.Teams.Add(new TeamDomain
+                db.Teams.Add(new TeamDomain
                 {
                     Name = Name,
                     TeamCode = joinCode

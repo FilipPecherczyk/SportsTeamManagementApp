@@ -9,8 +9,11 @@
 
   <ItemGroup>
     <None Remove="homeIMG.png" />
+    <None Remove="Images\accept_Icon.png" />
+    <None Remove="Images\add_Icon.png" />
     <None Remove="Images\backImage.jpg" />
     <None Remove="Images\barcateam.jpg" />
+    <None Remove="Images\cancel_Icon.png" />
     <None Remove="Images\close.png" />
     <None Remove="Images\closeBtn.png" />
     <None Remove="Images\closeLoginWindow.png" />
@@ -34,10 +37,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\accept_Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\add_Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\backImage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\barcateam.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\cancel_Icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
