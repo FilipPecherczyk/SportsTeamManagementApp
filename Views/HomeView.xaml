@@ -48,7 +48,7 @@
                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                Text="Zaksa Kędzierzyn Koźle"
+                Text="Fc Bayern Dortmund"
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
@@ -60,7 +60,7 @@
                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                Text="Zaksa Kędzierzyn Koźle"
+                Text="Fc Bayern Dortmund"
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
@@ -95,7 +95,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                        Text="Zaksa Kędzierzyn Koźle"
+                        Text="Arsenal Manchester"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
@@ -119,7 +119,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                        Text="21.05.2024, 16:00"
+                        Text="14.05.2024, 20:30"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>

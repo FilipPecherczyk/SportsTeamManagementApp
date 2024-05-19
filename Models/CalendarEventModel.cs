@@ -23,8 +23,8 @@ namespace SportsTeamManagementApp.Models
             }
         }
 
-        private DateTime _date;
-        public DateTime Date
+        private string _date;
+        public string Date
         {
             get { return _date; }
             set

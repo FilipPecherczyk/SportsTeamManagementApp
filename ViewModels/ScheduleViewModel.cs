@@ -30,14 +30,9 @@ namespace SportsTeamManagementApp.ViewModels
         {
             Events = new ObservableCollection<CalendarEventModel>()
             {
-                new CalendarEventModel { Name = "Trening", Date = DateTime.Today, Time = "16:00" },
-                new CalendarEventModel { Name = "Trening", Date = DateTime.Today, Time = "16:00" },
-                new CalendarEventModel { Name = "Trening", Date = DateTime.Today, Time = "16:00" },
-                new CalendarEventModel { Name = "Trening", Date = DateTime.Today, Time = "16:00" },
-                new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" },
-                new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" },
-                new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" },
-                new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today, Time = "18:30" }
+                new CalendarEventModel { Name = "Siłownia", Date = DateTime.Today.ToString("dd.MM.yyyy"), Time = "10:00" },
+                new CalendarEventModel { Name = "Trening", Date = DateTime.Today.ToString("dd.MM.yyyy"), Time = "16:00" },
+                new CalendarEventModel { Name = "Odnowa", Date = DateTime.Today.ToString("dd.MM.yyyy"), Time = "18:30" }
             };
 
             SetVisibilityAndEnabled();

@@ -46,7 +46,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="16 kwiecień 2024" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30"/>
+                <TextBlock Text="16 maj 2024" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30"/>
 
                 <ScrollViewer Style="{DynamicResource CustomScrollViewerStyle}" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding Events}">

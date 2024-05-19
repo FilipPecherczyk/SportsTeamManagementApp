@@ -26,15 +26,6 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void OnLoad()
         {
-            Players = new ObservableCollection<string>()
-            {
-                "Jan Kowalski",
-                "Rafał Paciorek",
-                "Robert Lewandowski",
-                "Adam Małysz",
-                "Monika Kowalska",
-                "Joanna Jędrzejczyk"
-            };
 
             Exercise = new ObservableCollection<string>()
             {
@@ -76,20 +67,6 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
-        private ObservableCollection<string> _players;
-        public ObservableCollection<string> Players
-        {
-            get { return _players; }
-            set
-            {
-                if (_players != value)
-                {
-                    _players = value;
-                    OnPropertyChanged();
-                }
-            }
-
-        }
 
         private ObservableCollection<string> _exercise;
         public ObservableCollection<string> Exercise
