@@ -27,15 +27,6 @@
                 Style="{StaticResource CalendarStyle}"/>
         </Viewbox>
 
-        <!--<Button Grid.Row="0" Grid.Column="1" 
-                VerticalAlignment="Top" HorizontalAlignment="Center"
-                Width="70" Height="70" Margin="50,0,0,0"
-                Background="Transparent" BorderBrush="Transparent" 
-                ToolTip="Dodaj nowe wydarzenie"
-                Command="{Binding CreateNewEventCommand}" Visibility="{Binding CreateNewEventBtnVisibility}">
-            <Image Source="\Images\add_Icon.png" Height="47"/>
-        </Button>-->
-
         <Grid  Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Width="150" Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -78,12 +69,21 @@
                 <StackPanel Grid.Row="1" Visibility="{Binding CreateNewEventPanelVisibility}">
                     <StackPanel Margin="10,20,10,10">
                         <Label FontSize="25" FontWeight="DemiBold" Foreground="White" Content="Tytuł wydarzenia:" HorizontalAlignment="Left"/>
-                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox FontSize="25" Margin="0,0,0,15" ItemsSource="{Binding EventTitles}" SelectedItem="{Binding NewEventModel.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding OtherEventTitleNameTBVisibility}"/>
                     </StackPanel>
 
                     <StackPanel Margin="10,20,10,10">
                         <Label FontSize="25" FontWeight="DemiBold" Foreground="White" Content="Godzina(HH:mm): " HorizontalAlignment="Left"/>
-                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<ComboBox Grid.Column="0" FontSize="25" Margin="5" ItemsSource="{Binding EventTimeHour}" SelectedItem="{Binding NewEventModel.TimeHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+							<ComboBox Grid.Column="1" FontSize="25" Margin="5" ItemsSource="{Binding EventTimeMinute}" SelectedItem="{Binding NewEventModel.TimeMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+						</Grid>
                     </StackPanel>
 
                 </StackPanel>

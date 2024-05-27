@@ -25,6 +25,9 @@ namespace SportsTeamManagementApp.ViewModels
         {
             View = view;
             EventPanelData = new ScheduleItemsControlModel();
+            NewEventModel = new CalendarEventModel();
+            NewEventModel.PropertyChanged += NewEventModel_PropertyChanged;
+
             OnLoad();
         }
 
@@ -32,7 +35,41 @@ namespace SportsTeamManagementApp.ViewModels
         {
             EventPanelData.TitleData = DateTime.Today;
 
+            EventTitles = new ObservableCollection<string>()
+            {
+                EnumTools.GetDescription(EventNameTypeEnum.Game),
+                EnumTools.GetDescription(EventNameTypeEnum.Training),
+                EnumTools.GetDescription(EventNameTypeEnum.Other)
+            };
+
+            EventTimeHour = new ObservableCollection<string>();
+            for (int i = 0; i <= 24; i++)
+            {
+                EventTimeHour.Add(i.ToString("00"));
+            }
+
+            EventTimeMinute = new ObservableCollection<string>();
+            for (int i = 0; i <= 60; i++)
+            {
+                EventTimeMinute.Add(i.ToString("00"));
+            }
+
             SetVisibilityAndEnabled();
+        }
+
+        private void NewEventModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CalendarEventModel.Type))
+            {
+                if (NewEventModel.Type.Equals(EnumTools.GetDescription(EventNameTypeEnum.Other)))
+                {
+                    OtherEventTitleNameTBVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    OtherEventTitleNameTBVisibility = Visibility.Collapsed;
+                }
+            }
         }
 
         private void SetVisibilityAndEnabled()
@@ -41,6 +78,7 @@ namespace SportsTeamManagementApp.ViewModels
             CreateNewEventPanelVisibility = Visibility.Hidden;
             CalendarEnabled = true;
             SaveCancelNewEventBtnVisibility = Visibility.Hidden;
+            OtherEventTitleNameTBVisibility = Visibility.Collapsed;
 
             // Depends of role
             if (STMAppMainData.LogedUserPermissionRole == EnumTools.GetDescription(UserCategoriesEnum.Coach))
@@ -78,6 +116,63 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_eventPanelData != value)
                 {
                     _eventPanelData = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<string> _eventTitles;
+        public ObservableCollection<string> EventTitles
+        {
+            get { return _eventTitles; }
+            set
+            {
+                if (_eventTitles != value)
+                {
+                    _eventTitles = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
+        private ObservableCollection<string> _eventTimeHour;
+        public ObservableCollection<string> EventTimeHour
+        {
+            get { return _eventTimeHour; }
+            set
+            {
+                if (_eventTimeHour != value)
+                {
+                    _eventTimeHour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<string> _eventTimeMinute;
+        public ObservableCollection<string> EventTimeMinute
+        {
+            get { return _eventTimeMinute; }
+            set
+            {
+                if (_eventTimeMinute != value)
+                {
+                    _eventTimeMinute = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _otherEventTitleNameTBVisibility;
+        public Visibility OtherEventTitleNameTBVisibility
+        {
+            get { return _otherEventTitleNameTBVisibility; }
+            set
+            {
+                if (_otherEventTitleNameTBVisibility != value)
+                {
+                    _otherEventTitleNameTBVisibility = value;
                     OnPropertyChanged();
                 }
             }
@@ -187,11 +282,11 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void CreateNewEvent()
         {
-            NewEventModel = new CalendarEventModel()
-            {   Date = EventPanelData.TitleData.Date.ToString(),
-                Name = "próba",
-                Time = "12:00"
-            };
+            //NewEventModel = new CalendarEventModel()
+            //{   Date = EventPanelData.TitleData.Date.ToString(),
+            //    Name = "próba",
+            //    Time = "12:00"
+            //};
 
             CalendarEventPanelVisibility = Visibility.Hidden;
             CreateNewEventPanelVisibility = Visibility.Visible;

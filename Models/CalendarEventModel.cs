@@ -9,6 +9,20 @@ namespace SportsTeamManagementApp.Models
 {
     public class CalendarEventModel : BaseModel
     {
+        private string _type;
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                if (_type != value)
+                {
+                    _type = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private string _name;
         public string Name
         {
@@ -46,6 +60,34 @@ namespace SportsTeamManagementApp.Models
                 if (_time != value)
                 {
                     _time = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _timeHour;
+        public string TimeHour
+        {
+            get { return _timeHour; }
+            set
+            {
+                if (_timeHour != value)
+                {
+                    _timeHour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _timeMinute;
+        public string TimeMinute
+        {
+            get { return _timeMinute; }
+            set
+            {
+                if (_timeMinute != value)
+                {
+                    _timeMinute = value;
                     OnPropertyChanged();
                 }
             }
