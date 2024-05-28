@@ -1,4 +1,6 @@
 ﻿using SportsTeamManagementApp.Common;
+using SportsTeamManagementApp.DbAction;
+using SportsTeamManagementApp.Entities;
 using SportsTeamManagementApp.Enums;
 using SportsTeamManagementApp.Extensions;
 using SportsTeamManagementApp.Models;
@@ -13,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace SportsTeamManagementApp.ViewModels
@@ -69,6 +72,15 @@ namespace SportsTeamManagementApp.ViewModels
                 {
                     OtherEventTitleNameTBVisibility = Visibility.Collapsed;
                 }
+
+                if (NewEventModel.Type.Equals(EnumTools.GetDescription(EventNameTypeEnum.Game)))
+                {
+                    GameDetailsVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    GameDetailsVisibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -79,6 +91,7 @@ namespace SportsTeamManagementApp.ViewModels
             CalendarEnabled = true;
             SaveCancelNewEventBtnVisibility = Visibility.Hidden;
             OtherEventTitleNameTBVisibility = Visibility.Collapsed;
+            GameDetailsVisibility = Visibility.Collapsed;
 
             // Depends of role
             if (STMAppMainData.LogedUserPermissionRole == EnumTools.GetDescription(UserCategoriesEnum.Coach))
@@ -234,6 +247,20 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
+        private Visibility _gameDetailsVisibility;
+        public Visibility GameDetailsVisibility
+        {
+            get { return _gameDetailsVisibility; }
+            set
+            {
+                if (_gameDetailsVisibility != value)
+                {
+                    _gameDetailsVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool _calendarEnabled;
         public bool CalendarEnabled
         {
@@ -282,11 +309,13 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void CreateNewEvent()
         {
-            //NewEventModel = new CalendarEventModel()
-            //{   Date = EventPanelData.TitleData.Date.ToString(),
-            //    Name = "próba",
-            //    Time = "12:00"
-            //};
+            NewEventModel.Date = EventPanelData.TitleDataDisplay;
+            NewEventModel.Name = "";
+            NewEventModel.Opponent = "";
+            NewEventModel.IsHomeGame = true;
+            NewEventModel.Type = EnumTools.GetDescription(EventNameTypeEnum.Game);
+            NewEventModel.TimeHour = DateTime.Now.Hour.ToString();
+            NewEventModel.TimeMinute = DateTime.Now.Minute.ToString();
 
             CalendarEventPanelVisibility = Visibility.Hidden;
             CreateNewEventPanelVisibility = Visibility.Visible;
@@ -322,6 +351,31 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void SaveNewEvent()
         {
+            if (NewEventModel.Type.Equals(EnumTools.GetDescription(EventNameTypeEnum.Other)) && String.IsNullOrWhiteSpace(NewEventModel.Name))
+            {
+                System.Windows.MessageBox.Show(
+                    "Uzupełnij tytuł wydarzenia.",
+                    "Powiadomienie",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return;
+            }
+            if (NewEventModel.Type.Equals(EnumTools.GetDescription(EventNameTypeEnum.Game)) && String.IsNullOrWhiteSpace(NewEventModel.Opponent))
+            {
+                System.Windows.MessageBox.Show(
+                    "Uzupełnij nazwę przeciwnika.",
+                    "Powiadomienie",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return;
+            }
+
+            var events = new EventDomain();
+
+            EventDbAction.AddEvent(events);
+
             SetVisibilityAndEnabled();
         }
 

@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="LargeCheckBox" TargetType="CheckBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Border" Width="30" Height="30" BorderBrush="White" BorderThickness="2" Background="White">
+                            <Grid Background="Transparent">
+                                <Path x:Name="CheckMark" Visibility="Collapsed" Data="M 5 15 L 15 25 L 25 5" Stroke="Black" StrokeThickness="2"/>
+                            </Grid>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

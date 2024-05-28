@@ -53,7 +53,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Binding EventPanelData.TitleData}" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30" Visibility="{Binding CalendarEventPanelVisibility}"/>
+                <TextBlock Text="{Binding EventPanelData.TitleDataDisplay}" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30" Visibility="{Binding CalendarEventPanelVisibility}"/>
                 <TextBlock Text="{Binding NewEventModel.Date}" FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,20,0,30" Visibility="{Binding CreateNewEventPanelVisibility}"/>
 
                 <ScrollViewer Style="{DynamicResource CustomScrollViewerStyle}" Grid.Row="1" VerticalScrollBarVisibility="Auto" Visibility="{Binding CalendarEventPanelVisibility}">
@@ -67,13 +67,16 @@
                 </ScrollViewer>
 
                 <StackPanel Grid.Row="1" Visibility="{Binding CreateNewEventPanelVisibility}">
-                    <StackPanel Margin="10,20,10,10">
+                    <StackPanel Margin="10,-10,10,10">
                         <Label FontSize="25" FontWeight="DemiBold" Foreground="White" Content="Tytuł wydarzenia:" HorizontalAlignment="Left"/>
                         <ComboBox FontSize="25" Margin="0,0,0,15" ItemsSource="{Binding EventTitles}" SelectedItem="{Binding NewEventModel.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding OtherEventTitleNameTBVisibility}"/>
+                        <Label FontSize="20" Margin="0,-10" FontWeight="DemiBold" Foreground="White" Content="Przeciwnik:" HorizontalAlignment="Left" Visibility="{Binding GameDetailsVisibility}"/>
+                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Margin="0,10,0,0" Text="{Binding NewEventModel.Opponent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding GameDetailsVisibility}"/>
+                        <CheckBox Style="{StaticResource LargeCheckBox}" FontSize="20" Foreground="White" FontWeight="DemiBold" Padding="5" IsChecked="{Binding NewEventModel.IsHomeGame}" Visibility="{Binding GameDetailsVisibility}">Mecz domowy</CheckBox>
                     </StackPanel>
 
-                    <StackPanel Margin="10,20,10,10">
+                    <StackPanel Margin="10,5,10,10">
                         <Label FontSize="25" FontWeight="DemiBold" Foreground="White" Content="Godzina(HH:mm): " HorizontalAlignment="Left"/>
 						<Grid>
 							<Grid.ColumnDefinitions>

@@ -92,5 +92,33 @@ namespace SportsTeamManagementApp.Models
                 }
             }
         }
+
+        private string _opponent;
+        public string Opponent
+        {
+            get { return _opponent; }
+            set
+            {
+                if (_opponent != value)
+                {
+                    _opponent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isHomeGame;
+        public bool IsHomeGame
+        {
+            get { return _isHomeGame; }
+            set
+            {
+                if (_isHomeGame != value)
+                {
+                    _isHomeGame = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 }

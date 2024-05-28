@@ -46,6 +46,21 @@ namespace SportsTeamManagementApp.Models.GridPagerModels
                 {
                     _titleData = value;
                     OnPropertyChanged();
+                    TitleDataDisplay = value.Date.ToString("dd.MM.yyyy");
+                }
+            }
+        }
+
+        private string _titleDataDisplay;
+        public string TitleDataDisplay
+        {
+            get { return _titleDataDisplay; }
+            set
+            {
+                if (_titleDataDisplay != value)
+                {
+                    _titleDataDisplay = value;
+                    OnPropertyChanged();
                 }
             }
         }
