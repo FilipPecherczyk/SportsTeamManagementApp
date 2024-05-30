@@ -82,5 +82,26 @@ namespace SportsTeamManagementApp.Mappings
         }
 
         #endregion
+
+        #region Event
+
+        public static ObservableCollection<CalendarEventModel> EventDomainListToCalendarEventModelObservableCollection(IList<EventDomain> events)
+        {
+            var finalList = new ObservableCollection<CalendarEventModel>();
+
+            foreach (var item in events)
+            {
+                finalList.Add(new CalendarEventModel()
+                {
+                    Name = item.Title,
+                    Date = item.Date.ToString("dd.MM.yyyy"),
+                    Time = item.Time,
+                });
+            }
+
+            return finalList;
+        }
+
+        #endregion
     }
 }

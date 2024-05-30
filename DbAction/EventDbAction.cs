@@ -60,6 +60,14 @@ namespace SportsTeamManagementApp.DbAction
             }
         }
 
+        public static IList<EventDomain> GetEventsByDate(DateTime date)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Events.Where(e => e.TeamId == STMAppMainData.LogedUserTeam.Id && e.Date.Date == date.Date).OrderBy(e => e.Time).ToList();
+            }
+        }
+
         public static int GetEventIdByProperties(EventDomain model)
         {
             using (var db = new DatabaseContext())

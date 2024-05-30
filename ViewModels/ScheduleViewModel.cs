@@ -3,6 +3,7 @@ using SportsTeamManagementApp.DbAction;
 using SportsTeamManagementApp.Entities;
 using SportsTeamManagementApp.Enums;
 using SportsTeamManagementApp.Extensions;
+using SportsTeamManagementApp.Mappings;
 using SportsTeamManagementApp.Models;
 using SportsTeamManagementApp.Models.GridPagerModels;
 using SportsTeamManagementApp.Models.SearchCriteria;
@@ -29,11 +30,14 @@ namespace SportsTeamManagementApp.ViewModels
         {
             View = view;
             EventPanelData = new ScheduleItemsControlModel();
+            EventPanelData.PropertyChanged += EventPanelData_PropertyChanged;
             NewEventModel = new CalendarEventModel();
             NewEventModel.PropertyChanged += NewEventModel_PropertyChanged;
 
             OnLoad();
         }
+
+
 
         private void OnLoad()
         {
@@ -59,6 +63,15 @@ namespace SportsTeamManagementApp.ViewModels
             }
 
             SetVisibilityAndEnabled();
+        }
+
+        private void EventPanelData_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ScheduleItemsControlModel.TitleData))
+            {
+                var eventDomainList = EventDbAction.GetEventsByDate(EventPanelData.TitleData);
+                EventPanelData.Events = Mapping.EventDomainListToCalendarEventModelObservableCollection(eventDomainList);
+            }
         }
 
         private void NewEventModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -178,6 +191,8 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
+        #region Visibility && Enabled
+
         private Visibility _otherEventTitleNameTBVisibility;
         public Visibility OtherEventTitleNameTBVisibility
         {
@@ -276,6 +291,7 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
+        #endregion
 
 
 
