@@ -11,6 +11,7 @@ using SportsTeamManagementApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -372,11 +373,43 @@ namespace SportsTeamManagementApp.ViewModels
                 return;
             }
 
-            var events = new EventDomain();
 
-            EventDbAction.AddEvent(events);
+            if (NewEventModel.Type == EnumTools.GetDescription(EventNameTypeEnum.Game))
+            {
+                var eventM = CreateEventDomain(NewEventModel);
+                var eventModel2 = CreateGameDomain(NewEventModel);
+
+                EventDbAction.AddEventWithGame(eventM, eventModel2);
+            }
+            else
+            {
+                var model = CreateEventDomain(NewEventModel);
+                EventDbAction.AddEvent(model);
+            }
 
             SetVisibilityAndEnabled();
+        }
+
+        private EventDomain CreateEventDomain(CalendarEventModel calendarModel)
+        {
+            var finalModel = new EventDomain();
+
+            finalModel.TeamId = STMAppMainData.LogedUserTeam.Id;
+            finalModel.Date = DateTime.ParseExact(calendarModel.Date, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            finalModel.Time = $"{calendarModel.TimeHour}:{calendarModel.TimeMinute}";
+            finalModel.Title = calendarModel.Type != EnumTools.GetDescription(EventNameTypeEnum.Other) ? calendarModel.Type : calendarModel.Name;
+
+            return finalModel;
+        }
+
+        private GameDomain CreateGameDomain(CalendarEventModel calendarModel)
+        {
+            var finalModel = new GameDomain();
+
+            finalModel.Opponent = calendarModel.Opponent;
+            finalModel.IsHomeGame = calendarModel.IsHomeGame;
+
+            return finalModel;
         }
 
         // Cancel event
