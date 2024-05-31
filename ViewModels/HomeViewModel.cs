@@ -21,6 +21,8 @@ namespace SportsTeamManagementApp.ViewModels
         {
             View = view;
             OnLoad();
+            NextGame = new GameModel();
+            PreviousGame = new GameModel();
         }
 
         private void OnLoad()
@@ -28,6 +30,10 @@ namespace SportsTeamManagementApp.ViewModels
             var userDomain = UserDbAction.GetUserById(STMAppMainData.LogedUserId);
             UserFullName = $"{userDomain.Name} {userDomain.LastName}";
             Team = STMAppMainData.LogedUserTeam;
+            var hour = DateTime.Now.TimeOfDay;
+
+            var a = GameDbActions.GetNextGame(DateTime.Today.Date, hour);
+            var b = GameDbActions.GetPreviousGame(DateTime.Today.Date, hour);
         }
 
         #region Properties
@@ -55,6 +61,34 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_team != value)
                 {
                     _team = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private GameModel _nextGame;
+        public GameModel NextGame
+        {
+            get { return _nextGame; }
+            set
+            {
+                if (_nextGame != value)
+                {
+                    _nextGame = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private GameModel _previousGame;
+        public GameModel PreviousGame
+        {
+            get { return _previousGame; }
+            set
+            {
+                if (_previousGame != value)
+                {
+                    _previousGame = value;
                     OnPropertyChanged();
                 }
             }

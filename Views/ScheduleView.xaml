@@ -70,9 +70,9 @@
                     <StackPanel Margin="10,-10,10,10">
                         <Label FontSize="25" FontWeight="DemiBold" Foreground="White" Content="Tytuł wydarzenia:" HorizontalAlignment="Left"/>
                         <ComboBox FontSize="25" Margin="0,0,0,15" ItemsSource="{Binding EventTitles}" SelectedItem="{Binding NewEventModel.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding OtherEventTitleNameTBVisibility}"/>
+                        <TextBox x:Name="NameToAnotherType_Tb" FontSize="25" FontWeight="DemiBold" Padding="5" Text="{Binding NewEventModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding OtherEventTitleNameTBVisibility}" PreviewTextInput="NameToAnotherType_Tb_PreviewTextInput"/>
                         <Label FontSize="20" Margin="0,-10" FontWeight="DemiBold" Foreground="White" Content="Przeciwnik:" HorizontalAlignment="Left" Visibility="{Binding GameDetailsVisibility}"/>
-                        <TextBox FontSize="25" FontWeight="DemiBold" Padding="5" Margin="0,10,0,0" Text="{Binding NewEventModel.Opponent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding GameDetailsVisibility}"/>
+                        <TextBox x:Name="OpponentName_Tb" FontSize="25" FontWeight="DemiBold" Padding="5" Margin="0,10,0,0" Text="{Binding NewEventModel.Opponent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding GameDetailsVisibility}" PreviewTextInput="OpponentName_Tb_PreviewTextInput"/>
                         <CheckBox Style="{StaticResource LargeCheckBox}" FontSize="20" Foreground="White" FontWeight="DemiBold" Padding="5" IsChecked="{Binding NewEventModel.IsHomeGame}" Visibility="{Binding GameDetailsVisibility}">Mecz domowy</CheckBox>
                     </StackPanel>
 
