@@ -19,7 +19,7 @@
 
         
         <!--Left-->
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10,40,0,0">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10,30,0,0">
 
             <TextBlock 
                 Text="{Binding UserFullName}"
@@ -79,6 +79,23 @@
             </StackPanel>
         </Border>
 
+        <Grid  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,163,20,0" Width="150" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Width="70" Height="70"  Background="Transparent" BorderBrush="Transparent" Command="{Binding EditResultCommand}" Visibility="{Binding EditResultBtnVisibility}" ToolTip="Dodaj nowe wydarzenie">
+                <Image Source="\Images\add_Icon.png" Height="37"/>
+            </Button>
+
+            <Button Grid.Column="0" Width="70" Height="70"  Background="Transparent" BorderBrush="Transparent" Command="{Binding SaveResultCommand}" Visibility="{Binding SaveCancelResultBtnVisibility}">
+                <Image Source="\Images\accept_Icon.png" Height="37"/>
+            </Button>
+
+            <Button Grid.Column="1" Width="70" Height="70"  Background="Transparent" BorderBrush="Transparent" Command="{Binding CancelResultCommand}" Visibility="{Binding SaveCancelResultBtnVisibility}">
+                <Image Source="\Images\cancel_Icon.png" Height="37"/>
+            </Button>
+        </Grid>
 
         <!--Last game-->
         <Border Grid.Column="0" Grid.Row="1" Margin="10" Background="#F8E9A1" BorderBrush="#374785" BorderThickness="5" CornerRadius="10">
@@ -106,10 +123,33 @@
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                    <TextBlock 
+                    <TextBlock Visibility="{Binding ResultVisibility}"
                         Text="{Binding PreviousGame.Result}"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
+
+                    <TextBox
+                        Width="80"
+                        FontSize="23" 
+                        FontWeight="DemiBold"
+                        HorizontalContentAlignment="Center"
+                        Margin="15,0,0,0"
+                        Visibility="{Binding EditResultVisibility}"/>
+
+                    <TextBlock 
+                        Text=":"
+                        FontSize="23" 
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"
+                        Visibility="{Binding EditResultVisibility}"/>
+
+                    <TextBox
+                        Width="80"
+                        FontSize="23"
+                        HorizontalContentAlignment="Center"
+                        FontWeight="DemiBold"
+                        Visibility="{Binding EditResultVisibility}"/>
+
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
@@ -127,6 +167,7 @@
             </StackPanel>
         </Border>
 
+        
 
         <!--Footer-->
         <!--<Grid Grid.Row="1" Grid.ColumnSpan="2">

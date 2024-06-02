@@ -9,6 +9,20 @@ namespace SportsTeamManagementApp.Models
 {
     public class GameModel : BaseModel
     {
+        private int _Id;
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if (_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private string _opponent;
         public string Opponent
         {

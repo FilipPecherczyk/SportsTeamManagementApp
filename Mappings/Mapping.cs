@@ -113,6 +113,7 @@ namespace SportsTeamManagementApp.Mappings
 
             if (domain != null)
             {
+                finalModel.Id = domain.Id;
                 finalModel.Opponent = domain.Opponent;
                 finalModel.Host = domain.IsHomeGame ? STMAppMainData.LogedUserTeam.Name : domain.Opponent;
                 finalModel.DateAndTime = $"{domain.Event.Date.ToString("dd.MM.yyyy")}, {domain.Event.Time}";
