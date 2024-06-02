@@ -15,7 +15,7 @@ namespace SportsTeamManagementApp.DbAction
         {
             using (var db = new DatabaseContext())
             {
-                var game = (from evt in db.Events
+                var games = (from evt in db.Events
                            join g in db.Games on evt.Id equals g.EventId
                            where evt.TeamId == STMAppMainData.LogedUserTeam.Id 
                                  && evt.Date > date
@@ -38,7 +38,16 @@ namespace SportsTeamManagementApp.DbAction
                                }
                            }).ToList();
 
-                return game.OrderBy(g => g.Event.Time).FirstOrDefault(g => TimeSpan.Parse(g.Event.Time) > hour);
+                // Today
+                var todayGames = games.Where(g => g.Event.Date == date);
+                var nextGameToday = todayGames.OrderBy(g => g.Event.Time).FirstOrDefault(g => TimeSpan.Parse(g.Event.Time) > hour);
+
+                if (nextGameToday != null) return nextGameToday;
+
+                // Not today 
+                var futureGames = games.Where(g => g.Event.Date > date);
+
+                return futureGames.OrderBy(g => g.Event.Date).ThenBy(g => g.Event.Time).FirstOrDefault();
             }
         }
 

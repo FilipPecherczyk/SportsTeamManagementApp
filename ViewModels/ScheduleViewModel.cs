@@ -70,7 +70,7 @@ namespace SportsTeamManagementApp.ViewModels
             if (e.PropertyName == nameof(ScheduleItemsControlModel.TitleData))
             {
                 var eventDomainList = EventDbAction.GetEventsByDate(EventPanelData.TitleData);
-                EventPanelData.Events = Mapping.EventDomainListToCalendarEventModelObservableCollection(eventDomainList);
+                EventPanelData.Events = Mapping.EventDomainListToCalendarEventModelObservableCollectionMap(eventDomainList);
             }
         }
 

@@ -43,36 +43,36 @@
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                Text="Przeciwnik:"
+                Text="Przeciwnik: "
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                Text="Fc Bayern Dortmund"
+                Text="{Binding NextGame.Opponent}"
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                Text="Gospodarz:"
+                Text="Gospodarz: "
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                Text="Fc Bayern Dortmund"
+                Text="{Binding NextGame.Host}"
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                Text="Data:"
+                Text="Data: "
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                Text="21.05.2024, 16:00"
+                Text="{Binding NextGame.DateAndTime}"
                 FontSize="23" FontWeight="DemiBold"
                 HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
@@ -90,36 +90,36 @@
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                        Text="Przeciwnik:"
+                        Text="Przeciwnik: "
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                        Text="Arsenal Manchester"
+                        Text="{Binding PreviousGame.Opponent}"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                        Text="Rezultat:"
+                        Text="Rezultat: "
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                        Text="Wygrana (3:1)"
+                        Text="{Binding PreviousGame.Result}"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                     <TextBlock 
-                        Text="Data:"
+                        Text="Data: "
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock 
-                        Text="14.05.2024, 20:30"
+                        Text="{Binding PreviousGame.DateAndTime}"
                         FontSize="23" FontWeight="DemiBold"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
                 </StackPanel>

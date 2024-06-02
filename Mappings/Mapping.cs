@@ -1,5 +1,6 @@
 ﻿using SportsTeamManagementApp.Entities;
 using SportsTeamManagementApp.Models;
+using SportsTeamManagementApp.STMApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -85,7 +86,7 @@ namespace SportsTeamManagementApp.Mappings
 
         #region Event
 
-        public static ObservableCollection<CalendarEventModel> EventDomainListToCalendarEventModelObservableCollection(IList<EventDomain> events)
+        public static ObservableCollection<CalendarEventModel> EventDomainListToCalendarEventModelObservableCollectionMap(IList<EventDomain> events)
         {
             var finalList = new ObservableCollection<CalendarEventModel>();
 
@@ -100,6 +101,52 @@ namespace SportsTeamManagementApp.Mappings
             }
 
             return finalList;
+        }
+
+        #endregion
+
+        #region Game
+
+        public static GameModel GameDomainToGameModelMap(GameDomain domain)
+        {
+            var finalModel = new GameModel();
+
+            if (domain != null)
+            {
+                finalModel.Opponent = domain.Opponent;
+                finalModel.Host = domain.IsHomeGame ? STMAppMainData.LogedUserTeam.Name : domain.Opponent;
+                finalModel.DateAndTime = $"{domain.Event.Date.ToString("dd.MM.yyyy")}, {domain.Event.Time}";
+
+                if (domain.OpponentScore != null && domain.TeamScore != null)
+                {
+                    if (domain.TeamScore > domain.OpponentScore)
+                    {
+                        finalModel.Result = $"Wygrana {domain.TeamScore}:{domain.OpponentScore}";
+                    }
+                    else if (domain.TeamScore < domain.OpponentScore)
+                    {
+                        finalModel.Result = $"Przegrana {domain.TeamScore}:{domain.OpponentScore}";
+                    }
+                    else
+                    {
+                        finalModel.Result = $"Remis {domain.TeamScore}:{domain.OpponentScore}";
+                    }
+                }
+                else
+                {
+                    finalModel.Result = "???";
+                }
+
+            }
+            else
+            {
+                finalModel.Opponent = "???";
+                finalModel.Host = "???";
+                finalModel.DateAndTime = "???";
+                finalModel.Result = "???";
+            }
+
+            return finalModel;
         }
 
         #endregion

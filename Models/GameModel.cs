@@ -26,12 +26,12 @@ namespace SportsTeamManagementApp.Models
         private string _host;
         public string Host
         {
-            get { return _opponent; }
+            get { return _host; }
             set
             {
-                if (_opponent != value)
+                if (_host != value)
                 {
-                    _opponent = value;
+                    _host = value;
                     OnPropertyChanged();
                 }
             }
