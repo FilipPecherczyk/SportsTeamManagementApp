@@ -78,5 +78,33 @@ namespace SportsTeamManagementApp.Models
                 }
             }
         }
+
+        private string _teamScore;
+        public string TeamScore
+        {
+            get { return _teamScore; }
+            set
+            {
+                if (_teamScore != value)
+                {
+                    _teamScore = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _opponentScore;
+        public string OpponentScore
+        {
+            get { return _opponentScore; }
+            set
+            {
+                if (_opponentScore != value)
+                {
+                    _opponentScore = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 }

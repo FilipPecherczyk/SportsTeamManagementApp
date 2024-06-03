@@ -10,6 +10,22 @@ namespace SportsTeamManagementApp.DbAction
 {
     public static class GameDbActions
     {
+        public static void EditGameScore(GameDomain gameDomain)
+        {
+            using (var db = new DatabaseContext())
+            {
+                var existingGame = db.Games.FirstOrDefault(g => g.Id == gameDomain.Id);
+
+                if (existingGame != null)
+                {
+                    existingGame.TeamScore = gameDomain.TeamScore;
+                    existingGame.OpponentScore = gameDomain.OpponentScore;
+
+                    db.SaveChanges();
+                }
+            }
+        }
+
 
         public static GameDomain GetNextGame(DateTime date, TimeSpan hour)
         {

@@ -246,6 +246,9 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void SaveResult()
         {
+            var model = Mapping.GameModelToGameDomainMap(PreviousGame);
+            GameDbActions.EditGameScore(model);
+
             ResultVisibility = Visibility.Visible;
             EditResultVisibility = Visibility.Collapsed;
 

@@ -120,6 +120,9 @@ namespace SportsTeamManagementApp.Mappings
 
                 if (domain.OpponentScore != null && domain.TeamScore != null)
                 {
+                    finalModel.TeamScore = domain.TeamScore?.ToString();
+                    finalModel.OpponentScore = domain.OpponentScore?.ToString();
+
                     if (domain.TeamScore > domain.OpponentScore)
                     {
                         finalModel.Result = $"Wygrana {domain.TeamScore}:{domain.OpponentScore}";
@@ -148,6 +151,22 @@ namespace SportsTeamManagementApp.Mappings
             }
 
             return finalModel;
+        }
+
+        public static GameDomain GameModelToGameDomainMap(GameModel model)
+        {
+            var finalDomain = new GameDomain();
+
+            if (model != null)
+            {
+                finalDomain.Id = model.Id;
+                finalDomain.Opponent = model.Opponent;
+                finalDomain.IsHomeGame = model.Host == STMAppMainData.LogedUserTeam.Name ? true : false;
+                finalDomain.TeamScore = int.Parse(model.TeamScore);
+                finalDomain.OpponentScore = int.Parse(model.OpponentScore);
+            }
+
+            return finalDomain;
         }
 
         #endregion

@@ -129,12 +129,14 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,0,0,0"/>
 
                     <TextBox
+                        Text="{Binding PreviousGame.TeamScore}"
                         Width="80"
                         FontSize="23" 
                         FontWeight="DemiBold"
                         HorizontalContentAlignment="Center"
                         Margin="15,0,0,0"
-                        Visibility="{Binding EditResultVisibility}"/>
+                        Visibility="{Binding EditResultVisibility}"
+                        PreviewTextInput="OnlyNumbers_Tb"/>
 
                     <TextBlock 
                         Text=":"
@@ -144,11 +146,13 @@
                         Visibility="{Binding EditResultVisibility}"/>
 
                     <TextBox
+                        Text="{Binding PreviousGame.OpponentScore}"
                         Width="80"
                         FontSize="23"
                         HorizontalContentAlignment="Center"
                         FontWeight="DemiBold"
-                        Visibility="{Binding EditResultVisibility}"/>
+                        Visibility="{Binding EditResultVisibility}"
+                        PreviewTextInput="OnlyNumbers_Tb"/>
 
                 </StackPanel>
 
