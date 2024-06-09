@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using SportsTeamManagementApp.Common;
 using SportsTeamManagementApp.DbAction;
+using SportsTeamManagementApp.Entities;
 using SportsTeamManagementApp.Enums;
 using SportsTeamManagementApp.Extensions;
 using SportsTeamManagementApp.Mappings;
+using SportsTeamManagementApp.Models;
 using SportsTeamManagementApp.STMApp;
 using SportsTeamManagementApp.Views;
 using System;
@@ -24,20 +26,21 @@ namespace SportsTeamManagementApp.ViewModels
         public RankingsViewModel(RankingsView view)
         {
             View = view;
+            Competition = new CompetitionModel();
             OnLoad();
         }
 
 
         private void OnLoad()
         {
+            CompetitionList = new ObservableCollection<string>();
 
-            Exercise = new ObservableCollection<string>()
+            var competitionDomainList = CompetitionDbAction.GetCompetitionList();
+
+            foreach (var competitionDomain in competitionDomainList)
             {
-                "Wyciskanie klatki leżąc",
-                "Bieg na 100m",
-                "Skok w dal"
-            };
-
+                CompetitionList.Add(competitionDomain.Name);
+            }
 
             SetVisibilityAndEnabled();
         }
@@ -51,6 +54,9 @@ namespace SportsTeamManagementApp.ViewModels
             NewExercisePanelVisibility = Visibility.Hidden;
             LeftPanelEnabled = true;
 
+            Competition.Name = "";
+            Competition.Unit = "";
+
             if (STMAppMainData.LogedUserPermissionRole == EnumTools.GetDescription(UserCategoriesEnum.Coach))
             {
                 AddNewExerciseBtnVisibility = Visibility.Visible;
@@ -61,7 +67,38 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
-        #region Collectinos
+        #region Properties
+
+        private ObservableCollection<string> _competitionList;
+        public ObservableCollection<string> CompetitionList
+        {
+            get { return _competitionList; }
+            set
+            {
+                if (_competitionList != value)
+                {
+                    _competitionList = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
+        private CompetitionModel _competition;
+        public CompetitionModel Competition
+        {
+            get { return _competition; }
+            set
+            {
+                if (_competition != value)
+                {
+                    _competition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        #region Visibility && Enabled
 
         private Visibility _addNewExerciseBtnVisibility;
         public Visibility AddNewExerciseBtnVisibility
@@ -133,20 +170,7 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
-        private ObservableCollection<string> _exercise;
-        public ObservableCollection<string> Exercise
-        {
-            get { return _exercise; }
-            set
-            {
-                if (_exercise != value)
-                {
-                    _exercise = value;
-                    OnPropertyChanged();
-                }
-            }
-
-        }
+        #endregion
 
         #endregion
 
@@ -162,20 +186,20 @@ namespace SportsTeamManagementApp.ViewModels
                 {
                     return command;
                 }
-                command = new RelayCommand(param => this.AddNewExerciseExecute());
+                command = new RelayCommand(param => this.AddNewExercise());
                 return _relayCommands[commandName] = command;
             }
 
             set { }
         }
 
-        private async void AddNewExerciseExecute()
-        {
-            await Task.Run(() =>
-            {
-                AddNewExercise();
-            });
-        }
+        //private async void AddNewExerciseExecute()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        AddNewExercise();
+        //    });
+        //}
 
         private void AddNewExercise()
         {
@@ -185,6 +209,7 @@ namespace SportsTeamManagementApp.ViewModels
             RankingDataGridVisibility = Visibility.Hidden;
             NewExercisePanelVisibility = Visibility.Visible;
             LeftPanelEnabled = false;
+
         }
 
 
@@ -215,12 +240,11 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void SaveNewExerciseBtn()
         {
-            SaveCancelNewExerciseVisiblity = Visibility.Hidden;
-            AddNewExerciseBtnVisibility = Visibility.Visible;
+            var competitionDomain = Mapping.CompetitionModelToDomainMap(Competition);
+            CompetitionDbAction.AddCompetition(competitionDomain);
 
-            RankingDataGridVisibility = Visibility.Visible;
-            NewExercisePanelVisibility = Visibility.Hidden;
-            LeftPanelEnabled = true;
+
+            SetVisibilityAndEnabled();
         }
 
 
@@ -251,12 +275,7 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void CancelSaveNewExerciseBtn()
         {
-            SaveCancelNewExerciseVisiblity = Visibility.Hidden;
-            AddNewExerciseBtnVisibility = Visibility.Visible;
-
-            RankingDataGridVisibility = Visibility.Visible;
-            NewExercisePanelVisibility = Visibility.Hidden;
-            LeftPanelEnabled = true;
+            SetVisibilityAndEnabled();
         }
 
         #endregion

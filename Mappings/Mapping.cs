@@ -170,5 +170,26 @@ namespace SportsTeamManagementApp.Mappings
         }
 
         #endregion
+
+
+        #region Competition
+
+        public static CompetitionDomain CompetitionModelToDomainMap(CompetitionModel model)
+        {
+            var competitionDomain = new CompetitionDomain();
+            if (model != null)
+            {
+                competitionDomain.Id = model.Id;
+                competitionDomain.Name = model.Name;
+                competitionDomain.Unit = model.Unit;
+                competitionDomain.Team = STMAppMainData.LogedUserTeam;
+            }
+
+            return competitionDomain;
+        }
+
+        #endregion
+
+
     }
 }

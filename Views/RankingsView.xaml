@@ -31,7 +31,7 @@
                 </Button>
 
                 <Label FontSize="20" >Ćwiczenie:</Label>
-                <ComboBox FontSize="20" ItemsSource="{Binding Exercise}" IsEnabled="{Binding LeftPanelEnabled}"/>
+                <ComboBox FontSize="20" ItemsSource="{Binding CompetitionList}" IsEnabled="{Binding LeftPanelEnabled}"/>
 
                 <Label FontSize="20" Margin="0,20,0,0">Ranking na dzień:</Label>
                 <DatePicker FontSize="20" IsEnabled="{Binding LeftPanelEnabled}"/>
@@ -124,12 +124,12 @@
 
                 <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
                     <Label FontSize="20" FontWeight="DemiBold" Content="Nazwa ćwiczenia:" HorizontalAlignment="Left"/>
-                    <TextBox FontSize="23" />
+                    <TextBox FontSize="23" Text="{Binding Competition.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Grid.Column="1" Margin="10">
                     <Label FontSize="20" FontWeight="DemiBold" Content="Jednostka:" HorizontalAlignment="Left"/>
-                    <TextBox FontSize="23"/>
+                    <TextBox FontSize="23" Text="{Binding Competition.Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
             </Grid>
