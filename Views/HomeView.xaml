@@ -171,36 +171,5 @@
             </StackPanel>
         </Border>
 
-        
-
-        <!--Footer-->
-        <!--<Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <Button 
-                Content="Wyloguj"
-                FontSize="25" FontWeight="SemiBold"
-                Background="Red" Foreground="White"
-                Width="150" Height="50"
-                HorizontalAlignment="Right" Margin="0,0,20,0">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                                x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#ff3333"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </Grid>-->
-
-
     </Grid>
 </UserControl>
