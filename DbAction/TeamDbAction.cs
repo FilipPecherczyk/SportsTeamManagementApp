@@ -1,4 +1,6 @@
 ﻿using SportsTeamManagementApp.Entities;
+using SportsTeamManagementApp.Extensions;
+using SportsTeamManagementApp.STMApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +25,14 @@ namespace SportsTeamManagementApp.DbAction
             using (var db = new DatabaseContext())
             {
                 return db.Users.Where(u => u.TeamId == id).ToList<UserDomain>();
+            }
+        }
+
+        public static IList<UserDomain> GetTeamTeamPlayers()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Users.Where(u => u.TeamId == STMAppMainData.LogedUserTeam.Id && u.Role == EnumTools.GetDescription(Enums.UserCategoriesEnum.Player)).ToList<UserDomain>();
             }
         }
     }

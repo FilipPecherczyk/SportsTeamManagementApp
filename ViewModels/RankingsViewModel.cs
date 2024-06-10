@@ -241,8 +241,7 @@ namespace SportsTeamManagementApp.ViewModels
         private void SaveNewExerciseBtn()
         {
             var competitionDomain = Mapping.CompetitionModelToDomainMap(Competition);
-            CompetitionDbAction.AddCompetition(competitionDomain);
-
+            CompetitionDbAction.AddCompetition(competitionDomain, TeamDbAction.GetTeamTeamPlayers().ToList());
 
             SetVisibilityAndEnabled();
         }
