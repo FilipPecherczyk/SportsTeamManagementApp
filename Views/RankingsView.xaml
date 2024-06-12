@@ -31,23 +31,25 @@
                 </Button>
 
                 <Label FontSize="20" >Ćwiczenie:</Label>
-                <ComboBox FontSize="20" ItemsSource="{Binding CompetitionList}" IsEnabled="{Binding LeftPanelEnabled}"/>
+                <ComboBox FontSize="20" ItemsSource="{Binding CompetitionList}" IsEnabled="{Binding LeftPanelEnabled}" SelectedValue="{Binding Criteria.ExerciseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label FontSize="20" Margin="0,20,0,0">Ranking na dzień:</Label>
-                <DatePicker FontSize="20" IsEnabled="{Binding LeftPanelEnabled}"/>
+                <DatePicker FontSize="20" IsEnabled="{Binding LeftPanelEnabled}" SelectedDate="{Binding Criteria.SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
                 <Button Style="{DynamicResource CustomStandardButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Center" 
                         Margin="0,30,10,0" 
                         Content="Generuj"
-                        IsEnabled="{Binding LeftPanelEnabled}"/>
+                        IsEnabled="{Binding LeftPanelEnabled}"
+                        Command="{Binding GenerateRankingCommand}"/>
 
                 <Button Style="{DynamicResource CustomStandardButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Center" 
                         Margin="0,30,10,0" Foreground="OrangeRed"
                         Content="Wyczyść kryteria"
-                        IsEnabled="{Binding LeftPanelEnabled}"/>
+                        IsEnabled="{Binding LeftPanelEnabled}"
+                        Command="{Binding CleanCriteriaCommand}"/>
 
             </StackPanel>
             
@@ -61,10 +63,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Margin="0,40,0,0" HorizontalAlignment="Center"
-               Text="Ranking"
+            <TextBlock Grid.Row="0" Margin="30,40,0,0" HorizontalAlignment="Left"
+               Text="{Binding ChosenCompetitionDisplay}"
                FontSize="40" FontWeight="Bold"
-               Visibility="Hidden"/>
+               Visibility="Visible"/>
 
             <Grid Grid.Row="0" Margin="0,0,100,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="80" Width="200">
                 <Grid.ColumnDefinitions>
@@ -86,7 +88,7 @@
             <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5" Visibility="{Binding RankingDataGridVisibility}">
                 <DataGrid Margin="-1"
                     FontSize="20"
-                    ItemsSource="{Binding HistoryOfExerciseList}" 
+                    ItemsSource="{Binding RankingList}" 
                     AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                     CanUserSortColumns="True" CanUserResizeColumns="False" CanUserReorderColumns="False"
                     CanUserResizeRows="False" IsReadOnly="True" IsHitTestVisible="False">
@@ -102,9 +104,9 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Zawodnik" Binding="{Binding Date}" Width="2*"/>
-                        <DataGridTextColumn Header="Wynik" Binding="{Binding Result}" Width="*"/>
-                        <DataGridTextColumn Header="Data" Binding="{Binding PercentageDifference}" Width="*"/>
+                        <DataGridTextColumn Header="Zawodnik" Binding="{Binding Name}" Width="2*"/>
+                        <DataGridTextColumn Header="Wynik" Binding="{Binding Score}" Width="*"/>
+                        <DataGridTextColumn Header="Data" Binding="{Binding Date}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>

@@ -6,6 +6,7 @@ using SportsTeamManagementApp.Enums;
 using SportsTeamManagementApp.Extensions;
 using SportsTeamManagementApp.Mappings;
 using SportsTeamManagementApp.Models;
+using SportsTeamManagementApp.Models.SearchCriteria;
 using SportsTeamManagementApp.STMApp;
 using SportsTeamManagementApp.Views;
 using System;
@@ -27,15 +28,24 @@ namespace SportsTeamManagementApp.ViewModels
         {
             View = view;
             Competition = new CompetitionModel();
+            RankingList = new ObservableCollection<RankingModel>();
+            Criteria = new RankingSearchCriteriaModel();
             OnLoad();
         }
 
 
         private void OnLoad()
         {
+
+
             CompetitionList = new ObservableCollection<string>();
 
             var competitionDomainList = CompetitionDbAction.GetCompetitionList();
+            
+
+            Criteria.SelectedDate = DateTime.Now;
+            //Criteria.ExerciseName = competitionDomainList.FirstOrDefault().Name;
+
 
             foreach (var competitionDomain in competitionDomainList)
             {
@@ -69,6 +79,21 @@ namespace SportsTeamManagementApp.ViewModels
 
         #region Properties
 
+        private RankingSearchCriteriaModel _criteria;
+        public RankingSearchCriteriaModel Criteria
+        {
+            get { return _criteria; }
+            set
+            {
+                if (_criteria != value)
+                {
+                    _criteria = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
         private ObservableCollection<string> _competitionList;
         public ObservableCollection<string> CompetitionList
         {
@@ -84,6 +109,20 @@ namespace SportsTeamManagementApp.ViewModels
 
         }
 
+        private ObservableCollection<RankingModel> _rankingList;
+        public ObservableCollection<RankingModel> RankingList
+        {
+            get { return _rankingList; }
+            set
+            {
+                if (_rankingList != value)
+                {
+                    _rankingList = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private CompetitionModel _competition;
         public CompetitionModel Competition
         {
@@ -93,6 +132,20 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_competition != value)
                 {
                     _competition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _chosenCompetitionDisplay;
+        public string ChosenCompetitionDisplay
+        {
+            get { return _chosenCompetitionDisplay; }
+            set
+            {
+                if (_chosenCompetitionDisplay != value)
+                {
+                    _chosenCompetitionDisplay = value;
                     OnPropertyChanged();
                 }
             }
@@ -176,6 +229,80 @@ namespace SportsTeamManagementApp.ViewModels
 
         #region Operations
 
+        // Add new exercise CleanCriteriaCommand
+        public ICommand GenerateRankingCommand
+        {
+            get
+            {
+                string commandName = "GenerateRankingCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.GenerateRankingExercise());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void GenerateRankingExercise()
+        {
+            await Task.Run(() =>
+            {
+                GenerateRanking();
+            });
+        }
+
+        private void GenerateRanking()
+        {
+            if (Criteria.ExerciseName != null)
+            {
+                RankingList = RankingDbAction.GetExerciseRankingObservalbeCollection(Criteria.ExerciseName, Criteria.SelectedDate);
+
+                var compModel = CompetitionDbAction.GetCompetitionByName(Criteria.ExerciseName);
+
+                ChosenCompetitionDisplay = compModel != null ? $"{compModel.Name} ({compModel.Unit})" : "";
+            }
+
+        }
+
+
+        // Clean criteria CleanCriteriaCommand
+        public ICommand CleanCriteriaCommand
+        {
+            get
+            {
+                string commandName = "CleanCriteriaCommand";
+                if (_relayCommands.TryGetValue(commandName, out RelayCommand command))
+                {
+                    return command;
+                }
+                command = new RelayCommand(param => this.CleanCriteriaExercise());
+                return _relayCommands[commandName] = command;
+            }
+
+            set { }
+        }
+
+        private async void CleanCriteriaExercise()
+        {
+            await Task.Run(() =>
+            {
+                CleanCriteria();
+            });
+        }
+
+        private void CleanCriteria()
+        {
+            Criteria.ExerciseName = null;
+            Criteria.SelectedDate = DateTime.Now;
+
+            ChosenCompetitionDisplay = null;
+        }
+
+
+
         // Add new exercise
         public ICommand AddNewExerciseCommand
         {
@@ -192,14 +319,6 @@ namespace SportsTeamManagementApp.ViewModels
 
             set { }
         }
-
-        //private async void AddNewExerciseExecute()
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        AddNewExercise();
-        //    });
-        //}
 
         private void AddNewExercise()
         {
