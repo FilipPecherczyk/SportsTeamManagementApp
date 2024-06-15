@@ -1,5 +1,6 @@
 ﻿using SportsTeamManagementApp.Common;
 using SportsTeamManagementApp.DbAction;
+using SportsTeamManagementApp.Mappings;
 using SportsTeamManagementApp.Models;
 using SportsTeamManagementApp.Models.GridPagerModels;
 using SportsTeamManagementApp.Views;
@@ -15,31 +16,34 @@ namespace SportsTeamManagementApp.ViewModels
     public class ScoreboardViewModel : BaseViewModel
     {
         private readonly ScoreboardView View;
-        public ObservableCollection<ExerciseResultHistoryModel> HistoryOfExerciseList { get; set; } = new ObservableCollection<ExerciseResultHistoryModel>();
-
 
         public ScoreboardViewModel(ScoreboardView view)
         {
             View = view;
             BestResultsData = new BestResultsScoreboardGridPagerModel();
-            
+            BestResultsData.PropertyChanged += BestResultsData_PropertyChanged;
+            HistoryOfExerciseList = new ObservableCollection<ExerciseResultHistoryModel>();
+
             OnLoad();
         }
 
         private void OnLoad()
         {
             BestResultsData.Exercises = ExerciseDbAction.GetBestsExerciseResultsObservalbeCollection();
-
-            HistoryOfExerciseList = new ObservableCollection<ExerciseResultHistoryModel>()
-            {
-                new ExerciseResultHistoryModel() { Date = DateTime.Today.ToString("dd.MM.yyyy"), Result = 70, PercentageDifference = "+4"},
-                new ExerciseResultHistoryModel() { Date = "11.04.2024", Result = 66, PercentageDifference = "+4"},
-                new ExerciseResultHistoryModel() { Date = "27.02.2024", Result = 62, PercentageDifference = "+12"},
-                new ExerciseResultHistoryModel() { Date = "01.12.2023", Result = 50, PercentageDifference = "0"},
-            };
-
         }
 
+        private void BestResultsData_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(BestResultsScoreboardGridPagerModel.SelectedModel))
+            {
+                var exerciseDomainList = ExerciseDbAction.GetExerciseListByCompetitionId(BestResultsData.SelectedModel.CompetitionId).ToList();
+                HistoryOfExerciseList = Mapping.ExerciseDomainListToObservableCollectionHistoryModelMap(exerciseDomainList);
+
+                var compModel = CompetitionDbAction.GetCompetition(BestResultsData.SelectedModel.CompetitionId);
+
+                ChosenCompetitionDisplay = compModel != null ? $"{compModel.Name} ({compModel.Unit})" : "";
+            }
+        }
 
 
         #region Properties
@@ -57,6 +61,35 @@ namespace SportsTeamManagementApp.ViewModels
                 }
             }
 
+        }
+
+        private ObservableCollection<ExerciseResultHistoryModel> _historyOfExerciseList;
+        public ObservableCollection<ExerciseResultHistoryModel> HistoryOfExerciseList
+        {
+            get { return _historyOfExerciseList; }
+            set
+            {
+                if (_historyOfExerciseList != value)
+                {
+                    _historyOfExerciseList = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+
+        private string _chosenCompetitionDisplay;
+        public string ChosenCompetitionDisplay
+        {
+            get { return _chosenCompetitionDisplay; }
+            set
+            {
+                if (_chosenCompetitionDisplay != value)
+                {
+                    _chosenCompetitionDisplay = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         #endregion

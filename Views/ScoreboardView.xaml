@@ -63,7 +63,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Margin="35,60,30,0" 
-                       Text="Wyciskanie klatki leżąc (kg)"
+                       Text="{Binding ChosenCompetitionDisplay}"
                        FontSize="28" FontWeight="Bold" />
 
 

@@ -190,6 +190,42 @@ namespace SportsTeamManagementApp.Mappings
 
         #endregion
 
+        #region Exercise
+
+        public static ObservableCollection<ExerciseResultHistoryModel> ExerciseDomainListToObservableCollectionHistoryModelMap(List<ExerciseDomain> exercises)
+        {
+            var helperList = new List<ExerciseResultHistoryModel>();
+
+            var exercisesSortedList = exercises.OrderBy(e => e.Date);
+
+            if (exercises != null && exercises.Count > 0)
+            {
+                for (int i = 0; i < exercises.Count; i++)
+                {
+                    var helperModel = new ExerciseResultHistoryModel();
+                    if (i != 0)
+                    {
+                        var diff = ((Convert.ToDouble(exercises[i].Score) - helperList[i - 1].Result) / helperList[i - 1].Result) * 100;
+
+                        helperModel.PercentageDifference = $"{diff.ToString("0.0")}%";
+                    }
+
+                    if (i == 1) helperModel.PercentageDifference = "100%";
+
+                    helperModel.Date = exercises[i].Date.ToString("dd.MM.yyyy");
+                    helperModel.Result = Convert.ToDouble(exercises[i].Score);
+
+                    helperList.Add(helperModel);
+                }
+            }
+
+            var finalCollection = new ObservableCollection<ExerciseResultHistoryModel>(helperList.OrderByDescending(e => e.Date).ThenByDescending(o => o.PercentageDifference));
+
+            return finalCollection;
+        }
+
+        #endregion
+
 
     }
 }

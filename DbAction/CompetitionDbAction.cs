@@ -52,11 +52,19 @@ namespace SportsTeamManagementApp.DbAction
             }
         }
 
-        public static CompetitionDomain GetCompetitionByName(string name)
+        public static CompetitionDomain GetCompetition(string name)
         {
             using (var db = new DatabaseContext())
             {
                 return db.Competitions.Where(c => c.Name == name && c.TeamId == STMAppMainData.LogedUserTeam.Id).FirstOrDefault();
+            }
+        }
+
+        public static CompetitionDomain GetCompetition(int id)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Competitions.Where(c => c.Id == id && c.TeamId == STMAppMainData.LogedUserTeam.Id).FirstOrDefault();
             }
         }
 

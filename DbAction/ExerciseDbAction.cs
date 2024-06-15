@@ -44,5 +44,17 @@ namespace SportsTeamManagementApp.DbAction
 
             return finalCollection;
         }
+
+        public static IList<ExerciseDomain> GetExerciseListByCompetitionId(int competitionId)
+        {
+            var finalList = new List<ExerciseDomain>();
+
+            using (var db = new DatabaseContext())
+            {
+                return db.Exercises.Where(e => e.CompetitionId == competitionId && e.UserId == STMAppMainData.LogedUserId).ToList();
+            }
+        }
+
+
     }
 }

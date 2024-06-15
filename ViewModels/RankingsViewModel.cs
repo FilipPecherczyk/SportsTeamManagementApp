@@ -260,7 +260,7 @@ namespace SportsTeamManagementApp.ViewModels
             {
                 RankingList = RankingDbAction.GetExerciseRankingObservalbeCollection(Criteria.ExerciseName, Criteria.SelectedDate);
 
-                var compModel = CompetitionDbAction.GetCompetitionByName(Criteria.ExerciseName);
+                var compModel = CompetitionDbAction.GetCompetition(Criteria.ExerciseName);
 
                 ChosenCompetitionDisplay = compModel != null ? $"{compModel.Name} ({compModel.Unit})" : "";
             }
