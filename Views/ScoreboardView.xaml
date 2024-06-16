@@ -6,14 +6,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-    
+
     <Grid Background="#A8D0E6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
+
         <!--Left-->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
                        Text="Wyniki"
                        FontSize="28" FontWeight="Bold" />
 
-            <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5">
+            <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5" IsEnabled="{Binding BestResultsDataGridEnabled}">
                 <DataGrid Margin="-1"
                       FontSize="20"
                       ItemsSource="{Binding BestResultsData.Exercises}" SelectedValue="{Binding BestResultsData.SelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -54,7 +54,7 @@
 
         </Grid>
 
-        
+
         <!--Right-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -62,12 +62,21 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <Button 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Width="80" Height="80" Margin="0,0,0,20"
+                Background="Transparent" BorderBrush="Transparent" 
+                ToolTip="Dodaj wynik do wybranego ćwiczenia"
+                Command="{Binding AddExerciseScoreCommand}" Visibility="{Binding AddExerciseBtnScoreVisibility}">
+                <Image Source="\Images\add_Icon.png" Height="47"/>
+            </Button>
+
             <TextBlock Grid.Row="0" Margin="35,60,30,0" 
                        Text="{Binding ChosenCompetitionDisplay}"
                        FontSize="28" FontWeight="Bold" />
 
 
-            <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5">
+            <Border Grid.Row="1" Margin="20,20,20,40" BorderThickness="5" BorderBrush="#4457a2" CornerRadius="5" Visibility="{Binding HistoryOfExerciseListVisibility}">
                 <DataGrid Margin="-1"
                     FontSize="20"
                     ItemsSource="{Binding HistoryOfExerciseList}" 
@@ -93,8 +102,30 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
-            
-            
+
+            <StackPanel Grid.Row="1" Margin="20,40,20,80">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding AddExerciseScoreVisibility}">
+                    <Label FontSize="25" FontWeight="DemiBold" >Wynik:</Label>
+                    <TextBox FontSize="25" Margin="10,0,0,0" FontWeight="DemiBold" Width="200" PreviewTextInput="TextBox_PreviewTextInput"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0" Visibility="{Binding AddExerciseScoreVisibility}">
+                    <Button  Width="80" Height="80"  
+                             Background="Transparent" BorderBrush="Transparent"
+                             ToolTip="Zapisz wynik"
+                             Command="{Binding SaveExerciseScoreCommand}">
+                        <Image Source="\Images\accept_Icon.png" Height="45"/>
+                    </Button>
+
+
+                    <Button  Width="80" Height="80"  
+                             Background="Transparent" BorderBrush="Transparent"
+                             ToolTip="Anuluj"
+                             Command="{Binding CancelExerciseScoreCommand}">
+                        <Image Source="\Images\cancel_Icon.png" Height="45"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
 
         </Grid>
 
