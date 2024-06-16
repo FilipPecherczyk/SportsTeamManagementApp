@@ -106,6 +106,19 @@ namespace SportsTeamManagementApp.ViewModels
             }
         }
 
+        private int _exerciseScore;
+        public int ExerciseScore
+        {
+            get { return _exerciseScore; }
+            set
+            {
+                if (_exerciseScore != value)
+                {
+                    _exerciseScore = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private Visibility _addExerciseScoreVisibility;
         public Visibility AddExerciseScoreVisibility
@@ -228,6 +241,8 @@ namespace SportsTeamManagementApp.ViewModels
 
         private void SaveExerciseScore()
         {
+            ExerciseDbAction.AddExercise(ExerciseScore, BestResultsData.SelectedModel.CompetitionId);
+
             HistoryOfExerciseListVisibility = Visibility.Visible;
             AddExerciseScoreVisibility = Visibility.Hidden;
             AddExerciseBtnScoreVisibility = Visibility.Visible;

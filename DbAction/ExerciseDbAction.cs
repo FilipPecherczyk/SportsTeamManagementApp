@@ -55,6 +55,23 @@ namespace SportsTeamManagementApp.DbAction
             }
         }
 
+        public static void AddExercise(int score, int competitionId)
+        {
+
+            using (var db = new DatabaseContext())
+            {
+                db.Exercises.Add(new ExerciseDomain()
+                {
+                    Score = score,
+                    Date = DateTime.Now,
+                    CompetitionId = competitionId,
+                    UserId = STMAppMainData.LogedUserId
+                });
+
+                db.SaveChanges();
+            }
+        }
+
 
     }
 }

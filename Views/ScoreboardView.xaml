@@ -106,7 +106,7 @@
             <StackPanel Grid.Row="1" Margin="20,40,20,80">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding AddExerciseScoreVisibility}">
                     <Label FontSize="25" FontWeight="DemiBold" >Wynik:</Label>
-                    <TextBox FontSize="25" Margin="10,0,0,0" FontWeight="DemiBold" Width="200" PreviewTextInput="TextBox_PreviewTextInput"/>
+                    <TextBox FontSize="25" Text="{Binding ExerciseScore}" Margin="10,0,0,0" FontWeight="DemiBold" Width="200" PreviewTextInput="TextBox_PreviewTextInput"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0" Visibility="{Binding AddExerciseScoreVisibility}">
