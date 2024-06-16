@@ -219,7 +219,7 @@ namespace SportsTeamManagementApp.Mappings
                 }
             }
 
-            var finalCollection = new ObservableCollection<ExerciseResultHistoryModel>(helperList.OrderByDescending(e => e.Date).ThenByDescending(o => o.PercentageDifference));
+            var finalCollection = new ObservableCollection<ExerciseResultHistoryModel>(helperList.OrderByDescending(e => DateTime.ParseExact(e.Date, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture)).ThenByDescending(o => o.PercentageDifference));
 
             return finalCollection;
         }
