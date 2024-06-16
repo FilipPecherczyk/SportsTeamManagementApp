@@ -91,6 +91,7 @@
                         <!--ScoreboardPage-->
                         <RadioButton Style="{StaticResource BtnStyle}"
                              Command="{Binding ScoreboardCommand}"
+                             Visibility="{Binding ScoreboardVisibility}"
                              IsChecked="False">
 
                             <Grid>

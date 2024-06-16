@@ -1,4 +1,7 @@
 ﻿using SportsTeamManagementApp.Common;
+using SportsTeamManagementApp.Enums;
+using SportsTeamManagementApp.Extensions;
+using SportsTeamManagementApp.STMApp;
 using SportsTeamManagementApp.ViewModels;
 using SportsTeamManagementApp.Views;
 using System;
@@ -6,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SportsTeamManagementApp.ViewModels
@@ -21,6 +25,20 @@ namespace SportsTeamManagementApp.ViewModels
                 if (_currentView != value)
                 {
                     _currentView = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Visibility _scoreboardVisibility;
+        public Visibility ScoreboardVisibility
+        {
+            get { return _scoreboardVisibility; }
+            set
+            {
+                if (_scoreboardVisibility != value)
+                {
+                    _scoreboardVisibility = value;
                     OnPropertyChanged();
                 }
             }
@@ -52,6 +70,9 @@ namespace SportsTeamManagementApp.ViewModels
             // Startup Page
             CurrentView = new HomeViewModel(new HomeView());
 
+            ScoreboardVisibility =
+                STMAppMainData.LogedUserPermissionRole == EnumTools.GetDescription(UserCategoriesEnum.Coach)
+                ? Visibility.Hidden : Visibility.Visible;
         }
     }
 }
