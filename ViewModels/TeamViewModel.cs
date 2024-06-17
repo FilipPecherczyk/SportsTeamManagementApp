@@ -270,13 +270,12 @@ namespace SportsTeamManagementApp.ViewModels
         {
             await Task.Run(() =>
             {
-                EditTeamButtons();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    TeamButtonsConfigurationWindowView newWindow = new TeamButtonsConfigurationWindowView();
+                    newWindow.ShowDialog();
+                });
             });
-        }
-
-        private void EditTeamButtons()
-        {
-            
         }
 
         #endregion
