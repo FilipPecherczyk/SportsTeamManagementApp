@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsTeamManagementApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace SportsTeamManagementApp.Views
         public TeamButtonsConfigurationWindowView()
         {
             InitializeComponent();
+            var model = new TeamButtonsConfigurationWindowViewModel(this);
+            this.DataContext = model;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
