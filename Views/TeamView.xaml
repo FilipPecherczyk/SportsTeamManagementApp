@@ -102,16 +102,22 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30,10,0,10">
             <Button 
-                Content="Strona Ligi"
-                Style="{DynamicResource TeamPanelButtonStyle}"/>
+                Content="{Binding FirstButton.Name}"
+                Style="{DynamicResource TeamPanelButtonStyle}"
+                Command="{Binding FirstBtnCommand}"
+                Visibility="{Binding FirstBtnVisiblity}"/>
 
             <Button 
-                Content="Fanpage drużyny"
-                Style="{DynamicResource TeamPanelButtonStyle}"/>
+                Content="{Binding SecondButton.Name}"
+                Style="{DynamicResource TeamPanelButtonStyle}"
+                Command="{Binding SecondBtnCommand}"
+                Visibility="{Binding SecondBtnVisiblity}"/>
 
             <Button 
-                Content="Tabela"
-                Style="{DynamicResource TeamPanelButtonStyle}"/>
+                Content="{Binding ThirdButton.Name}"
+                Style="{DynamicResource TeamPanelButtonStyle}"
+                Command="{Binding ThirdBtnCommand}"
+                Visibility="{Binding ThirdBtnVisiblity}"/>
         </StackPanel>
 
         <Button Grid.Row="1" Grid.Column="1" Margin="370,80,10,-10" 
