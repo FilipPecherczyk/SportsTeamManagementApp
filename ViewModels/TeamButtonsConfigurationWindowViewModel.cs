@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace SportsTeamManagementApp.ViewModels
 {
     public class TeamButtonsConfigurationWindowViewModel : BaseViewModel
     {
         private readonly TeamButtonsConfigurationWindowView _view;
+        private int DataBaseButtonId;
 
         public TeamButtonsConfigurationWindowViewModel(TeamButtonsConfigurationWindowView view)
         {
@@ -23,12 +25,33 @@ namespace SportsTeamManagementApp.ViewModels
             SecondButton = new TeamButtonModel();
             ThirdButton = new TeamButtonModel();
 
+            OnLoad();
+        }
+
+        private void OnLoad()
+        {
+            FirstButton.IndexNumber = 1;
+            SecondButton.IndexNumber = 2;
+            ThirdButton.IndexNumber = 3;
+
+            DataBaseButtonId = 0;
+
             GetButtonsInfo();
         }
 
         private void GetButtonsInfo()
         {
+            var buttonsDomain = ButtonsDbAction.GetButtons();
+            if (buttonsDomain != null)
+            {
+                var buttonsList = JsonConvert.DeserializeObject<List<TeamButtonModel>>(buttonsDomain.ButtonsJSON);
 
+                FirstButton = buttonsList[0];
+                SecondButton = buttonsList[1];
+                ThirdButton = buttonsList[2];
+
+                DataBaseButtonId = buttonsDomain.Id;
+            }
         }
 
         private TeamButtonModel _firstButton;
@@ -106,6 +129,21 @@ namespace SportsTeamManagementApp.ViewModels
                 SecondButton,
                 ThirdButton
             };
+
+            string json = JsonConvert.SerializeObject(abc, Formatting.Indented);
+            if (DataBaseButtonId != 0)
+            {
+                ButtonsDbAction.SaveEditButtons(json, DataBaseButtonId);
+            }
+            else
+            {
+                ButtonsDbAction.AddButton(json);
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _view.Close();
+            });
         }
 
     }
